@@ -36,10 +36,9 @@ namespace torsion.Controllers
         public ActionResult Index()
         {
             //Server.MapPath("~/log.txt")
-            WriteFile(Server.MapPath("~/log.txt"), "Get:"+Request.QueryString["echoStr"]);
+           
             string echoStr = Request.QueryString["echoStr"];
-            return Content(Server.MapPath("~/log.txt")+echoStr);
-            /*
+            WriteFile(Server.MapPath("~/log.txt"), "Get:" + Request.ToString());
             if (CheckSignature())
             {
                 if (!string.IsNullOrEmpty(echoStr))
@@ -48,7 +47,7 @@ namespace torsion.Controllers
                 }
             }
             return null;
-             * */
+            
         }
 
         [HttpPost]
