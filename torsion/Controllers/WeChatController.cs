@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
+using System.Text;
+
 
 namespace torsion.Controllers
 {
@@ -10,6 +13,21 @@ namespace torsion.Controllers
     {
         //
         // GET: /WeChat/
+        public static bool WriteFile(string strpath,string str)
+        {
+            StreamWriter sw = null;
+            try
+            {
+                sw = new StreamWriter(strpath, true, System.Text.Encoding.UTF8);
+                sw.Write(str+"\r\n");
+                sw.Flush();
+            }
+            finally
+            {
+                sw.Close();
+            }
+            return true;
+        }
 
         private static readonly string Token = "weixin";
         //
@@ -17,7 +35,11 @@ namespace torsion.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            //Server.MapPath("~/log.txt")
+            WriteFile(Server.MapPath("~/log.txt"), "Get:"+Request.QueryString["echoStr"]);
             string echoStr = Request.QueryString["echoStr"];
+            return Content(echoStr);
+            /*
             if (CheckSignature())
             {
                 if (!string.IsNullOrEmpty(echoStr))
@@ -26,6 +48,24 @@ namespace torsion.Controllers
                 }
             }
             return null;
+             * */
+        }
+
+        [HttpPost]
+        [ActionName("Index")]
+        public ActionResult PostIndex()
+        {
+            Stream s = System.Web.HttpContext.Current.Request.InputStream;
+            //转换成Byte数组
+            byte[] b = new byte[s.Length];
+            //读取流
+            s.Read(b, 0, (int)s.Length);
+            //转化成utf8编码
+            string postStr = Encoding.UTF8.GetString(b);
+
+            WriteFile(Server.MapPath("~/log.txt"), "Post:" + postStr);
+            return null;
+            
         }
         /// <summary>
         /// 验证微信签名

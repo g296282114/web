@@ -48,7 +48,6 @@ E:\GitHub\torsion\torsion\bin\DotNetOpenAuth.OAuth.Consumer.xml
 E:\GitHub\torsion\torsion\bin\DotNetOpenAuth.OAuth.xml
 E:\GitHub\torsion\torsion\bin\DotNetOpenAuth.OpenId.xml
 E:\GitHub\torsion\torsion\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-E:\GitHub\torsion\torsion\obj\Debug\torsion.csprojResolveAssemblyReference.cache
 E:\GitHub\torsion\torsion\obj\Debug\torsion.dll
 E:\GitHub\torsion\torsion\obj\Debug\torsion.pdb
 F:\My Files\web\web\torsion\bin\torsion.dll
