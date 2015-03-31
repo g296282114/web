@@ -11,6 +11,7 @@ namespace torsion.Controllers
 {
     public class WeChatController : Controller
     {
+        private static readonly string Token = "weixin";
         //
         // GET: /WeChat/
         public static bool WriteFile(string strpath,string str)
@@ -29,7 +30,7 @@ namespace torsion.Controllers
             return true;
         }
 
-        private static readonly string Token = "weixin";
+        
         //
         // GET: /Weixin/
         [HttpGet]
