@@ -38,7 +38,7 @@ namespace torsion.Controllers
             //Server.MapPath("~/log.txt")
             WriteFile(Server.MapPath("~/log.txt"), "Get:"+Request.QueryString["echoStr"]);
             string echoStr = Request.QueryString["echoStr"];
-            return Content(echoStr);
+            return Content(Server.MapPath("~/log.txt")+echoStr);
             /*
             if (CheckSignature())
             {
