@@ -7,6 +7,8 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using torsion.Models;
+using System.Net;
+using System.Web.Script.Serialization;
 
 
 namespace torsion.Controllers
@@ -14,6 +16,7 @@ namespace torsion.Controllers
     public class WeChatController : Controller
     {
         private static readonly string Token = "weixin";
+        private string finalstr;
         //
         // GET: /WeChat/
         public static bool WriteFile(string strpath,string str)
@@ -209,6 +212,59 @@ namespace torsion.Controllers
             intResult = (time - startTime).TotalSeconds;
             return intResult;
         }
+
+        public ActionResult get_acctoken()
+        {
+            string gettokenurl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx7bc500cbc32c3e15&secret=74f817b2d21b261d891745a4879244e6";
+
+            //generate http request
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(gettokenurl);
+            //use GET method to get url's html
+            req.Method = "GET";
+            //use request to get response
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            //otherwise will return messy code
+            //  Encoding htmlEncoding = Encoding.GetEncoding(htmlCharset);
+            StreamReader sr = new StreamReader(resp.GetResponseStream(), Encoding.UTF8);
+            //read out the returned html
+            string respHtml = sr.ReadToEnd();
+            //上边为读取json数据，下边就是解析了
+            //传说中的反序列化
+            //另外，为了方便我在model里新建了一个Access_Token实体
+            Access_Token j2 = new JavaScriptSerializer().Deserialize<Access_Token>(respHtml);
+            //acctoken是一个静态变量，全局的就是。
+            //当然你也可把他写入文件或者数据库
+            finalstr = j2.access_token;
+
+            WriteFile(Server.MapPath("~/log.txt"), "token:" + finalstr);
+
+            return Content(finalstr);
+
+        }
+
+        public ActionResult creat_mymenu() 
+        { 
+            string url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=" + 
+                finalstr; 
+            string data = "{\"button\":[{\"type\":\"click\",\"name\":\"今日歌曲\",\"key\":\"V1001_TODAY_MUSIC\"},{\"type\":\"click\",\"name\":\"歌手简介\",\"key\":\"V1001_TODAY_SINGER\"},{\"name\":\"菜单\",\"sub_button\":[{\"type\":\"view\",\"name\":\"搜索\",\"url\":\"http://www.soso.com/\"},{\"type\":\"view\",\"name\":\"视频\",\"url\":\"http://v.qq.com/\"},{\"type\":\"click\",\"name\":\"赞一下我们\",\"key\":\"V1001_GOOD\"}]}]}";
+            System.Net.HttpWebRequest httpWebRequest = (HttpWebRequest)System.Net.WebRequest.Create(url);
+            httpWebRequest.Method = "POST"; 
+            byte[] postBytes = Encoding.UTF8.GetBytes(data); 
+            //httpWebRequest.ContentType = "text/xml";
+            httpWebRequest.ContentType = "application/json; charset=utf-8";
+            // httpWebRequest.ContentLength = Encoding.UTF8.GetByteCount(data);
+            //strJson为json字符串 
+            Stream stream = httpWebRequest.GetRequestStream(); 
+            stream.Write(postBytes, 0, postBytes.Length); 
+            stream.Close();
+            //发送完毕，接受返回值 
+            var response = httpWebRequest.GetResponse(); 
+            Stream streamResponse = response.GetResponseStream(); 
+            StreamReader streamRead = new StreamReader(streamResponse); 
+            String responseString = streamRead.ReadToEnd();
+            WriteFile(Server.MapPath("~/log.txt"), "restr:" + responseString);
+            return Content(responseString); 
+        } 
 
     }
 }
