@@ -102,3 +102,4 @@ F:\My Files\web\web\torsion\bin\DotNetOpenAuth.OpenId.xml
 F:\My Files\web\web\torsion\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 F:\My Files\web\web\torsion\obj\Debug\torsion.dll
 F:\My Files\web\web\torsion\obj\Debug\torsion.pdb
+E:\GitHub\torsion\torsion\obj\Debug\torsion.csprojResolveAssemblyReference.cache

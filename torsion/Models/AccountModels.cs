@@ -26,6 +26,9 @@ namespace torsion.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string UserAge { get; set; }
+
+
     }
 
     public class RegisterExternalLoginModel
@@ -87,6 +90,12 @@ namespace torsion.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public UserProfile User { get; set; }
+        public RegisterModel()
+        {
+            User = new UserProfile();
+        }
     }
 
     public class ExternalLogin

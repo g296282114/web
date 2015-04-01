@@ -79,6 +79,17 @@ namespace torsion.Controllers
                 // Attempt to register the user
                 try
                 {
+                    if (WebSecurity.UserExists(model.UserName))
+                    {
+                        ModelState.AddModelError("", "UserName already exists.");
+                        return View(model);
+                    }
+                    using (var db = new UsersContext())
+                    {
+                        model.User.UserName = model.UserName;
+                        db.UserProfiles.Add(model.User);
+                        db.SaveChanges();
+                    }
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");

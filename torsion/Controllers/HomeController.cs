@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using torsion.Models;
 
 namespace torsion.Controllers
 {
@@ -26,6 +27,22 @@ namespace torsion.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult PersonAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PersonAdd(Person_Model model)
+        {
+            //一行代码判断验证是否通过
+            if (ModelState.IsValid)
+            {
+                return Redirect("/Home/PersonManager");
+            }
             return View();
         }
     }
