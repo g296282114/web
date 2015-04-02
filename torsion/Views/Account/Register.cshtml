@@ -15,9 +15,16 @@
     <fieldset>
         <legend>Registration Form</legend>
         <ol>
+             <li>@Html.LabelFor(m => m.Email)
+                @Html.EditorFor(m => m.Email)
+            </li>
             <li>
-                @Html.LabelFor(m => m.User.UserAge)
-                @Html.TextBoxFor(m => m.User.UserAge)
+                @Html.LabelFor(m => m.SecurityQuestion)
+                @Html.EditorFor(m => m.SecurityQuestion)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.SecurityAnswer)
+                @Html.EditorFor(m => m.SecurityAnswer)
             </li>
             <li>
                 @Html.LabelFor(m => m.UserName)

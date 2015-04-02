@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using torsion.Filters;
 using torsion.Models;
+using torsion.Domain.Repository;
 
 namespace torsion.Controllers
 {
@@ -76,23 +77,45 @@ namespace torsion.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
+                // 尝试注册用户
                 try
                 {
+                    //UserRepository userRsy = new UserRepository();
+                    //UserProfile userModel = userRsy.Find(model.UserId);
+                    //if (userModel != null)
+                    //{
+                    //    ModelState.AddModelError("", "当前用户已存在，请重新选择");
+                    //    return View(model);
+                    //}
                     if (WebSecurity.UserExists(model.UserName))
                     {
-                        ModelState.AddModelError("", "UserName already exists.");
+                        ModelState.AddModelError("", "UserName already exists");
                         return View(model);
                     }
-                    using (var db = new UsersContext())
-                    {
-                        model.User.UserName = model.UserName;
-                        db.UserProfiles.Add(model.User);
-                        db.SaveChanges();
-                    }
+                    
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    ExtraUserInfo extraUserModel = new ExtraUserInfo
+                    {
+
+                        UserId = WebSecurity.GetUserId(model.UserName),// model.UserId,
+                        GroupId = model.GroupId,
+                        Email = model.Email,
+                        SecurityQuestion = model.SecurityQuestion,
+                        SecurityAnswer = model.SecurityAnswer,
+                        RegTime = model.RegTime,
+                        LastLoginTime = model.LastLoginTime
+                    };
+                    ExtraUserInfoRepository extraUserRsy = new ExtraUserInfoRepository();
+                    if (extraUserRsy.Add(extraUserModel))
+                    {
+                        
+                        WebSecurity.Login(model.UserName, model.Password);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "在用户注册时，发生了未知错误");
+                    }
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -100,114 +123,7 @@ namespace torsion.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-
-        //
-        // POST: /Account/Disassociate
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Disassociate(string provider, string providerUserId)
-        {
-            string ownerAccount = OAuthWebSecurity.GetUserName(provider, providerUserId);
-            ManageMessageId? message = null;
-
-            // Only disassociate the account if the currently logged in user is the owner
-            if (ownerAccount == User.Identity.Name)
-            {
-                // Use a transaction to prevent the user from deleting their last login credential
-                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
-                {
-                    bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-                    if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)
-                    {
-                        OAuthWebSecurity.DeleteAccount(provider, providerUserId);
-                        scope.Complete();
-                        message = ManageMessageId.RemoveLoginSuccess;
-                    }
-                }
-            }
-
-            return RedirectToAction("Manage", new { Message = message });
-        }
-
-        //
-        // GET: /Account/Manage
-
-        public ActionResult Manage(ManageMessageId? message)
-        {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : "";
-            ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
-        }
-
-        //
-        // POST: /Account/Manage
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Manage(LocalPasswordModel model)
-        {
-            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            ViewBag.HasLocalPassword = hasLocalAccount;
-            ViewBag.ReturnUrl = Url.Action("Manage");
-            if (hasLocalAccount)
-            {
-                if (ModelState.IsValid)
-                {
-                    // ChangePassword will throw an exception rather than return false in certain failure scenarios.
-                    bool changePasswordSucceeded;
-                    try
-                    {
-                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
-                    }
-                    catch (Exception)
-                    {
-                        changePasswordSucceeded = false;
-                    }
-
-                    if (changePasswordSucceeded)
-                    {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                    }
-                }
-            }
-            else
-            {
-                // User does not have a local password so remove any validation errors caused by a missing
-                // OldPassword field
-                ModelState state = ModelState["OldPassword"];
-                if (state != null)
-                {
-                    state.Errors.Clear();
-                }
-
-                if (ModelState.IsValid)
-                {
-                    try
-                    {
-                        WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
-                    }
-                    catch (Exception e)
-                    {
-                        ModelState.AddModelError("", e);
-                    }
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
+            // 如果我们进行到这一步时某个地方出错，则重新显示表单
             return View(model);
         }
 
