@@ -67,7 +67,7 @@ namespace torsion.Controllers
             s.Read(b, 0, (int)s.Length);
             //转化成utf8编码
             string postStr = Encoding.UTF8.GetString(b);
-
+            WriteFile(Server.MapPath("~/log.txt"), "IP:" + GetIPAddress()); 
             WriteFile(Server.MapPath("~/log.txt"), "Post:" + postStr);
             Handle(postStr);
             
@@ -98,6 +98,30 @@ namespace torsion.Controllers
                 return false;
             }
         }
+
+
+        public static string GetIPAddress()
+        {
+
+            string user_IP = string.Empty;
+            if (System.Web.HttpContext.Current.Request.ServerVariables["HTTP_VIA"] != null)
+            {
+                if (System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null)
+                {
+                    user_IP = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
+                }
+                else
+                {
+                    user_IP = System.Web.HttpContext.Current.Request.UserHostAddress;
+                }
+            }
+            else
+            {
+                user_IP = System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
+            }
+            return user_IP + System.Web.HttpContext.Current.Request.Url.Port;
+        }
+
         private void Valid()
         {
             string echoStr = Request.QueryString["echoStr"];
