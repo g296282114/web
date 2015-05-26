@@ -103,3 +103,16 @@ F:\My Files\web\web\torsion\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 F:\My Files\web\web\torsion\obj\Debug\torsion.dll
 F:\My Files\web\web\torsion\obj\Debug\torsion.pdb
 E:\GitHub\torsion\torsion\obj\Debug\torsion.csprojResolveAssemblyReference.cache
+E:\GitHub\torsion\torsion\bin\torsion.BLL.dll
+E:\GitHub\torsion\torsion\bin\CodematicDemo.IDAL.dll
+E:\GitHub\torsion\torsion\bin\torsion.BLL.pdb
+E:\GitHub\torsion\torsion\bin\CodematicDemo.IDAL.pdb
+E:\GitHub\torsion\torsion\bin\torsion.Model.dll
+E:\GitHub\torsion\torsion\bin\torsion.DALFactory.dll
+E:\GitHub\torsion\torsion\bin\torsion.Model.pdb
+E:\GitHub\torsion\torsion\bin\torsion.DALFactory.pdb
+E:\GitHub\torsion\torsion\bin\torsion.SQLServerDAL.dll
+E:\GitHub\torsion\torsion\bin\torsion.DBUtility.dll
+E:\GitHub\torsion\torsion\bin\MySql.Data.dll
+E:\GitHub\torsion\torsion\bin\torsion.SQLServerDAL.pdb
+E:\GitHub\torsion\torsion\bin\torsion.DBUtility.pdb
