@@ -61,6 +61,14 @@ namespace torsion.DALFactory
 			object objType=CreateObject(AssemblyPath,ClassNamespace);
             return (torsion.IDAL.IAdmin)objType;
 		}
+        public static torsion.IDAL.IAttendance CreateAttendance()
+		{
+
+            string ClassNamespace = AssemblyPath + ".Attendance";
+			object objType=CreateObject(AssemblyPath,ClassNamespace);
+            return (torsion.IDAL.IAttendance)objType;
+		}
+        
 
 }
 }

@@ -22,6 +22,25 @@ namespace torsion.Controllers
             model = bll.GetModel(1);
             return model.UserName;
         }
+        public string Attendance()
+        {
+            torsion.BLL.Attendance bll = new torsion.BLL.Attendance();
+            // torsion.Model.Attendance model = new torsion.Model.Attendance();
+            DataSet ds = bll.GetList("1=1");
+            string ts = "test<br/>";
+            foreach (DataColumn dc in ds.Tables[0].Columns)
+                ts += " "+dc.ColumnName;
+            ts += "<br/>";
+            foreach (DataRow dr in ds.Tables[0].Rows)   ///遍历所有的行
+            {
+                ts += "<br/>";
+                foreach (DataColumn dc in ds.Tables[0].Columns)   //遍历所有的列
+                    ts += " " + dr[dc];
+            }
+           
+            return ts;
+
+        }
 
     }
 }
