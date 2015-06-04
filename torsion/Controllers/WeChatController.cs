@@ -17,6 +17,7 @@ namespace torsion.Controllers
     {
         private static readonly string Token = "weixin";
         private string finalstr;
+        private static readonly string acToken = "aizW37YFylAkQeLglFrZ-cF6wGvlW433hwFB0S2sg0kwsj3FjZN-PygRoJ-kFFM57jlURMFKEvZjuH5OIlwOpairLGCGCNoZlwwgZcu3mzs";
         //
         // GET: /WeChat/
         public static bool WriteFile(string strpath,string str)
@@ -72,6 +73,47 @@ namespace torsion.Controllers
             Handle(postStr);
             
         }
+
+
+        public ActionResult SendGlf()
+        {
+            string strcon = "{\"touser\":\"oCOhut6m5Tt-4Z_yZ5hMhpjsS5IM\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
+            return Content(PostData("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + acToken,strcon));
+        }
+
+        private string PostData(string url, string postData)
+        {
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte[] data = encoding.GetBytes(postData);
+            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(url);
+
+            myRequest.Method = "POST";
+            myRequest.ContentType = "application/x-www-form-urlencoded";
+            myRequest.ContentLength = data.Length;
+            Stream newStream = myRequest.GetRequestStream();
+
+            newStream.Write(data, 0, data.Length);
+            newStream.Close();
+
+            HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
+            StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.Default);
+            string content = reader.ReadToEnd();
+            reader.Close();
+            return content;
+        }
+
+        private string GetData(string url)
+        {
+            HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(url);
+            myRequest.Method = "GET";
+            HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
+            StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.UTF8);
+            string content = reader.ReadToEnd();
+            reader.Close();
+            return content;
+        }
+
+
         /// <summary>
         /// 验证微信签名
         /// </summary>
