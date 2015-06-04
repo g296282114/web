@@ -94,28 +94,10 @@ namespace torsion.Controllers
                     }
                     
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    ExtraUserInfo extraUserModel = new ExtraUserInfo
-                    {
-
-                        UserId = WebSecurity.GetUserId(model.UserName),// model.UserId,
-                        GroupId = model.GroupId,
-                        Email = model.Email,
-                        SecurityQuestion = model.SecurityQuestion,
-                        SecurityAnswer = model.SecurityAnswer,
-                        RegTime = model.RegTime,
-                        LastLoginTime = model.LastLoginTime
-                    };
-                    ExtraUserInfoRepository extraUserRsy = new ExtraUserInfoRepository();
-                    if (extraUserRsy.Add(extraUserModel))
-                    {
-                        
-                        WebSecurity.Login(model.UserName, model.Password);
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "在用户注册时，发生了未知错误");
-                    }
+                    if (!Roles.RoleExists("User"))
+                        Roles.CreateRole("User");
+                    if (!Roles.IsUserInRole(model.UserName, "User"))
+                        Roles.AddUserToRole(model.UserName, "User");
                 }
                 catch (MembershipCreateUserException e)
                 {
