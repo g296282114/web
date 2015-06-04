@@ -78,7 +78,7 @@ namespace torsion.Controllers
         public ActionResult SendGlf()
         {
             finalstr = "Tm8WCsRvHCrsrJpejES-BDlZqDLSiXvRyYjQ_TyifZ_61LxR7eSxf57gwvSTp8ws8bYsEnMqHwoErcRZFIeMR0HLO8-1lw5bm6Bwx0Bx9Ig";
-            string strcon = "{\"touser\":\"oCOhut6m5Tt-4Z_yZ5hMhpjsS5IM\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
+            string strcon = "{\"touser\":\"o3HeNt1A7dHe0hM5DAB46s2UhUIU\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
             System.Net.HttpWebRequest httpWebRequest = (HttpWebRequest)System.Net.WebRequest.Create("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + acToken);
             httpWebRequest.Method = "POST";
             byte[] postBytes = Encoding.UTF8.GetBytes(strcon);
