@@ -17,7 +17,7 @@ namespace torsion.Controllers
     {
         private static readonly string Token = "weixin";
         private string finalstr;
-        private static readonly string acToken = "aizW37YFylAkQeLglFrZ-cF6wGvlW433hwFB0S2sg0kwsj3FjZN-PygRoJ-kFFM57jlURMFKEvZjuH5OIlwOpairLGCGCNoZlwwgZcu3mzs";
+        private static readonly string acToken = "P3mn5cSJ5bzSNLmovrlXRzU2M-g90BCTqZikmmVpqQmq3RyK6M-f_mHfOvbA3ltRCrPT8-m1GZVUA0-VUzajFA7-uC14wy1Kn91OPeGlCWE";
         //
         // GET: /WeChat/
         public static bool WriteFile(string strpath,string str)
@@ -79,7 +79,7 @@ namespace torsion.Controllers
         {
             finalstr = "Tm8WCsRvHCrsrJpejES-BDlZqDLSiXvRyYjQ_TyifZ_61LxR7eSxf57gwvSTp8ws8bYsEnMqHwoErcRZFIeMR0HLO8-1lw5bm6Bwx0Bx9Ig";
             string strcon = "{\"touser\":\"oCOhut6m5Tt-4Z_yZ5hMhpjsS5IM\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
-            System.Net.HttpWebRequest httpWebRequest = (HttpWebRequest)System.Net.WebRequest.Create("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + finalstr);
+            System.Net.HttpWebRequest httpWebRequest = (HttpWebRequest)System.Net.WebRequest.Create("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + acToken);
             httpWebRequest.Method = "POST";
             byte[] postBytes = Encoding.UTF8.GetBytes(strcon);
             //httpWebRequest.ContentType = "text/xml";

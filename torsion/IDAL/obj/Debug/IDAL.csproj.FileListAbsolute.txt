@@ -33,3 +33,10 @@ E:\GitHub\torsion\torsion\IDAL\obj\Debug\CodematicDemo.IDAL.dll
 E:\GitHub\torsion\torsion\IDAL\obj\Debug\CodematicDemo.IDAL.pdb
 E:\GitHub\torsion\torsion\IDAL\bin\Debug\torsion.Model.dll
 E:\GitHub\torsion\torsion\IDAL\bin\Debug\torsion.Model.pdb
+F:\My Files\web\web\web\torsion\IDAL\bin\Debug\CodematicDemo.IDAL.dll
+F:\My Files\web\web\web\torsion\IDAL\bin\Debug\CodematicDemo.IDAL.pdb
+F:\My Files\web\web\web\torsion\IDAL\bin\Debug\torsion.Model.dll
+F:\My Files\web\web\web\torsion\IDAL\bin\Debug\torsion.Model.pdb
+F:\My Files\web\web\web\torsion\IDAL\obj\Debug\IDAL.csprojResolveAssemblyReference.cache
+F:\My Files\web\web\web\torsion\IDAL\obj\Debug\CodematicDemo.IDAL.dll
+F:\My Files\web\web\web\torsion\IDAL\obj\Debug\CodematicDemo.IDAL.pdb
