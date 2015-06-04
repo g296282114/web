@@ -21,4 +21,3 @@ E:\GitHub\torsion\torsion\Model\bin\Debug\torsion.Model.dll
 E:\GitHub\torsion\torsion\Model\bin\Debug\torsion.Model.pdb
 E:\GitHub\torsion\torsion\Model\obj\Debug\torsion.Model.dll
 E:\GitHub\torsion\torsion\Model\obj\Debug\torsion.Model.pdb
-E:\GitHub\torsion\torsion\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

@@ -78,7 +78,23 @@ namespace torsion.Controllers
         public ActionResult SendGlf()
         {
             string strcon = "{\"touser\":\"oCOhut6m5Tt-4Z_yZ5hMhpjsS5IM\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
-            return Content(PostData("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + acToken,strcon));
+            System.Net.HttpWebRequest httpWebRequest = (HttpWebRequest)System.Net.WebRequest.Create("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + acToken);
+            httpWebRequest.Method = "POST";
+            byte[] postBytes = Encoding.UTF8.GetBytes(strcon);
+            //httpWebRequest.ContentType = "text/xml";
+            httpWebRequest.ContentType = "application/json; charset=utf-8";
+            // httpWebRequest.ContentLength = Encoding.UTF8.GetByteCount(data);
+            //strJson为json字符串 
+            Stream stream = httpWebRequest.GetRequestStream();
+            stream.Write(postBytes, 0, postBytes.Length);
+            stream.Close();
+            //发送完毕，接受返回值 
+            var response = httpWebRequest.GetResponse();
+            Stream streamResponse = response.GetResponseStream();
+            StreamReader streamRead = new StreamReader(streamResponse);
+            String responseString = streamRead.ReadToEnd();
+            WriteFile(Server.MapPath("~/log.txt"), "restr:" + responseString);
+            return Content(responseString); 
         }
 
         private string PostData(string url, string postData)
@@ -101,6 +117,8 @@ namespace torsion.Controllers
             reader.Close();
             return content;
         }
+
+   
 
         private string GetData(string url)
         {
