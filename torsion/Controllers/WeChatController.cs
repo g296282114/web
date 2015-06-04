@@ -264,6 +264,7 @@ namespace torsion.Controllers
                 }
 
                 System.Web.HttpContext.Current.Response.Write(resxml);
+                WriteFile(Server.MapPath("~/log.txt"), "sendstr:" + resxml);
                 //  WriteToDB(requestXML, resxml, mi.pid);
             }
             catch (Exception E)
@@ -300,7 +301,7 @@ namespace torsion.Controllers
 
         public ActionResult get_acctoken()
         {
-            string gettokenurl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx7bc500cbc32c3e15&secret=74f817b2d21b261d891745a4879244e6";
+            string gettokenurl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxb9c9c1936b42acb0&secret=41031124d519f5b6ed237e7764e11e4d";
 
             //generate http request
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(gettokenurl);
