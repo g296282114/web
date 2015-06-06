@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
+using System.IO;
+using System.Text;
 
 namespace torsion.Controllers
 {
@@ -40,6 +42,25 @@ namespace torsion.Controllers
            
             return ts;
 
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public string GetPost(string str)
+        {
+            string postStr;
+            if (Request.HttpMethod.ToLower() == "post")
+              {
+                  Stream s = System.Web.HttpContext.Current.Request.InputStream;
+                  byte[] b = new byte[s.Length];
+                  s.Read(b, 0, (int)s.Length);
+                  postStr = Encoding.UTF8.GetString(b);
+                  if (!string.IsNullOrEmpty(postStr))
+                  {
+                      WeChatController.WriteFile(Server.MapPath("~/log.txt"), "poststr:" + postStr); 
+                 }                 //WriteLog("postStr:" + postStr);
+             }
+            
+            return "ok";
         }
 
     }
