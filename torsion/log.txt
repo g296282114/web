@@ -31,3 +31,9 @@ poststr:
 poststr:
 poststr:{"AttFlag":1,"Checktime":"2015-06-05 14:05:22\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
 poststr:{"AttFlag":1,"Checktime":"2015-06-05 14:07:21\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+Get:System.Web.HttpRequestWrapper
+Get:System.Web.HttpRequestWrapper
+Get:System.Web.HttpRequestWrapper
+Get:System.Web.HttpRequestWrapper
+Get:System.Web.HttpRequestWrapper
+Get:System.Web.HttpRequestWrapper

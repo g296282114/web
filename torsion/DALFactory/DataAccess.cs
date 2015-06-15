@@ -68,7 +68,13 @@ namespace torsion.DALFactory
 			object objType=CreateObject(AssemblyPath,ClassNamespace);
             return (torsion.IDAL.IAttendance)objType;
 		}
-        
+        public static torsion.IDAL.IWeChat CreateWeChat()
+        {
+
+            string ClassNamespace = AssemblyPath + ".WeChat";
+            object objType = CreateObject(AssemblyPath, ClassNamespace);
+            return (torsion.IDAL.IWeChat)objType;
+        }
 
 }
 }
