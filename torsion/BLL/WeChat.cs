@@ -17,7 +17,10 @@ namespace torsion.BLL
 
             return dal.GetModel();
         }
-
+        public int UpdateConf(string conName, string conValue)
+        {
+            return dal.UpdateConf(conName,conValue);
+        }
 
 		#endregion  成员方法
 	}

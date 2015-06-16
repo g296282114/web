@@ -70,7 +70,6 @@ D:\work\vs2010\MarkManagementSystem\BLL\obj\Debug\BLL.csprojResolveAssemblyRefer
 D:\work\vs2010\MarkManagementSystem\BLL\obj\Debug\MMS.BLL.dll
 D:\work\vs2010\MarkManagementSystem\BLL\obj\Debug\MMS.BLL.pdb
 E:\GitHub\torsion\torsion\BLL\bin\Debug\CodematicDemo.IDAL.dll
-E:\GitHub\torsion\torsion\BLL\bin\Debug\MySql.Data.dll
 E:\GitHub\torsion\torsion\BLL\bin\Debug\CodematicDemo.IDAL.pdb
 E:\GitHub\torsion\torsion\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 E:\GitHub\torsion\torsion\BLL\bin\Debug\torsion.BLL.dll.config

@@ -113,7 +113,6 @@ E:\GitHub\torsion\torsion\bin\torsion.Model.pdb
 E:\GitHub\torsion\torsion\bin\torsion.DALFactory.pdb
 E:\GitHub\torsion\torsion\bin\torsion.SQLServerDAL.dll
 E:\GitHub\torsion\torsion\bin\torsion.DBUtility.dll
-E:\GitHub\torsion\torsion\bin\MySql.Data.dll
 E:\GitHub\torsion\torsion\bin\torsion.SQLServerDAL.pdb
 E:\GitHub\torsion\torsion\bin\torsion.DBUtility.pdb
 F:\My Files\web\web\web\torsion\bin\torsion.dll

@@ -303,31 +303,21 @@ namespace torsion.Controllers
             return intResult;
         }
 
-        public ActionResult get_acctoken()
+        public ActionResult show_actoken()
         {
-            string gettokenurl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxb9c9c1936b42acb0&secret=41031124d519f5b6ed237e7764e11e4d";
-
-            //generate http request
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(gettokenurl);
-            //use GET method to get url's html
-            req.Method = "GET";
-            //use request to get response
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-            //otherwise will return messy code
-            //  Encoding htmlEncoding = Encoding.GetEncoding(htmlCharset);
-            StreamReader sr = new StreamReader(resp.GetResponseStream(), Encoding.UTF8);
-            //read out the returned html
-            string respHtml = sr.ReadToEnd();
-            //上边为读取json数据，下边就是解析了
-            //传说中的反序列化
-            //另外，为了方便我在model里新建了一个Access_Token实体
-            Access_Token j2 = new JavaScriptSerializer().Deserialize<Access_Token>(respHtml);
-            //acctoken是一个静态变量，全局的就是。
-            //当然你也可把他写入文件或者数据库
-
-            WriteFile(Server.MapPath("~/log.txt"), "token:" + j2.access_token);
-
-            return Content(j2.access_token);
+            return Content(model.acToken);
+        }
+        public ActionResult set_actoken()
+        {
+            
+            string gettokenurl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+model.appID+"&secret="+model.appsecret;
+            string restr = "";
+            restr = GetData(gettokenurl);
+            Access_Token j2 = new JavaScriptSerializer().Deserialize<Access_Token>(restr);
+            webll.UpdateConf("acToken",j2.access_token);
+            model = webll.GetModel();
+            
+            return show_actoken();
 
         }
 

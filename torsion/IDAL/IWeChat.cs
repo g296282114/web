@@ -13,7 +13,8 @@ namespace torsion.IDAL
         /// <summary>
         /// 得到一个对象实体
         /// </summary>
-        torsion.Model.WeChat GetModel();
+         torsion.Model.WeChat GetModel();
+         int UpdateConf(string conName, string conValue);
 
         #endregion  成员方法
     }
