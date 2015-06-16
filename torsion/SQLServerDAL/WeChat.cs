@@ -16,14 +16,17 @@ namespace torsion.SQLServerDAL
         }
         public int UpdateConf(string conName,string conValue)
         {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("update WeChat_Conf set conValue = \""+conValue+"\" where conName = \""+conName+"\"");
-            int ri = 0;
-            if ((ri = DbHelperSQL.ExecuteSql(strSql.ToString())) == 0)
+            SqlParameter[] parameters = 
             {
-                strSql.Remove(0,strSql.Length);
-                strSql.Append("insert into WeChat_Conf(conName,conValue) values (\""+conName+"\",\""+conValue+"\")");
-                ri = DbHelperSQL.ExecuteSql(strSql.ToString());
+                    new SqlParameter("@conName", SqlDbType.VarChar,50),
+					new SqlParameter("@conValue", SqlDbType.VarChar,255)
+            };
+            parameters[0].Value = conName;
+            parameters[1].Value = conValue;
+            int ri = 0;
+            if ((ri = DbHelperSQL.ExecuteSql("update WeChat_Conf set conValue = @conValue where conName = @conName",parameters)) == 0)
+            {
+                ri = DbHelperSQL.ExecuteSql("insert into WeChat_Conf(conName,conValue) values (@conName,@conValue",parameters);
             }
             return ri;
         }

@@ -37,3 +37,4 @@ Get:System.Web.HttpRequestWrapper
 Get:System.Web.HttpRequestWrapper
 Get:System.Web.HttpRequestWrapper
 Get:System.Web.HttpRequestWrapper
+restr:{"errcode":0,"errmsg":"ok"}
