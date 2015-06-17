@@ -13,6 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace torsion.Controllers
 {
+  
     public class WeChatController : Controller
     {
             static torsion.BLL.WeChat webll = new torsion.BLL.WeChat();
@@ -20,6 +21,16 @@ namespace torsion.Controllers
          //   torsion.Model.WeChat model = new torsion.Model.WeChat();  
         //
         // GET: /WeChat/
+            protected override void OnActionExecuting(ActionExecutingContext filterContext)
+            { //在Action执行前执行
+               
+                if (string.IsNullOrEmpty(model.acToken))
+                {
+                    set_actoken();
+                }
+                base.OnActionExecuting(filterContext);
+            }
+
         public static bool WriteFile(string strpath,string str)
         {
             StreamWriter sw = null;
@@ -307,7 +318,7 @@ namespace torsion.Controllers
         {
             return Content(model.acToken);
         }
-        public ActionResult set_actoken()
+        public void set_actoken()
         {
             
             string gettokenurl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+model.appID+"&secret="+model.appsecret;
@@ -315,9 +326,7 @@ namespace torsion.Controllers
             restr = GetData(gettokenurl);
             Access_Token j2 = new JavaScriptSerializer().Deserialize<Access_Token>(restr);
             webll.UpdateConf("acToken",j2.access_token);
-            model = webll.GetModel();
-            
-            return show_actoken();
+            model.acToken = j2.access_token;
 
         }
 

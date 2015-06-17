@@ -63,5 +63,27 @@ namespace torsion.Controllers
             return "ok";
         }
 
+        public string Get_Post_String()
+        {
+            string postStr="";
+            if (Request.HttpMethod.ToLower() == "post")
+            {
+                Stream s = System.Web.HttpContext.Current.Request.InputStream;
+                byte[] b = new byte[s.Length];
+                s.Read(b, 0, (int)s.Length);
+                postStr = Encoding.UTF8.GetString(b);
+                if (!string.IsNullOrEmpty(postStr))
+                {
+                    WeChatController.WriteFile(Server.MapPath("~/log.txt"), "poststr:" + postStr);
+                }                 //WriteLog("postStr:" + postStr);
+            }
+            return "";
+        }
+
+        public string test()
+        {
+            GlobalController.Write_Err("bbbb");
+            return "ok";
+        }
     }
 }

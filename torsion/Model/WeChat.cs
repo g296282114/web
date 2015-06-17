@@ -12,12 +12,27 @@ namespace torsion.Model
         private string _appID = "";
         private string _appsecret = "";
         private string _userID = "";
+        private long _actoken_expired = 0;
+
+
+        private DateTime actoken_time;
+
         public WeChat()
 		{}
         public string token
         {
-            set { _token = value; }
-            get { return _token; }
+            set 
+            { 
+                _token = value;
+                actoken_time = DateTime.Now;
+            }
+            get 
+            { 
+                TimeSpan ts = DateTime.Now-actoken_time;
+                if (ts.Seconds > _actoken_expired - 200)
+                    return "";
+                return _token; 
+            }
         }
         public string acToken
         {
@@ -43,6 +58,12 @@ namespace torsion.Model
         {
             set { _userID = value; }
             get { return _userID; }
+        }
+
+        public long actoken_expired
+        {
+            set { _actoken_expired = value; }
+            get { return _actoken_expired; }
         }
        
     }
