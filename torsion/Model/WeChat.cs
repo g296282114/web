@@ -6,6 +6,31 @@ namespace torsion.Model
 {
     public class WeChat
     {
+        public class reJSON
+        {
+            public int errCode { get; set; }
+            public string errMessage { get; set; }       
+        }
+        public class Access_Token
+        {
+            public string access_token { get; set; }
+            public int expires_in { get; set; }
+
+        }
+        public class JSEQdata
+        {
+            public JSEQdata() { }
+            public int Userid { get; set; }
+            // [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 20)]
+            public string Checktime { get; set; }
+            //  public string Checktime { get; set; }
+            public int Checktype { get; set; }
+            public int Sensorid { get; set; }
+            public int WorkType { get; set; }
+            public int AttFlag { get; set; }
+            public int OpenDoorFlag { get; set; }
+        }
+
         private string _token = "";
         private string _acToken = "";
         private string _WeChatID = "";
@@ -21,9 +46,14 @@ namespace torsion.Model
 		{}
         public string token
         {
+            set { _token = value; }
+            get { return _token; }
+        }
+        public string acToken
+        {
             set 
-            { 
-                _token = value;
+            {
+                _acToken = value;
                 actoken_time = DateTime.Now;
             }
             get 
@@ -31,13 +61,9 @@ namespace torsion.Model
                 TimeSpan ts = DateTime.Now-actoken_time;
                 if (ts.Seconds > _actoken_expired - 200)
                     return "";
-                return _token; 
+                return _acToken; 
             }
-        }
-        public string acToken
-        {
-            set { _acToken = value; }
-            get { return _acToken; }
+           
         }
         public string WeChatID
         {
@@ -67,4 +93,5 @@ namespace torsion.Model
         }
        
     }
+
 }

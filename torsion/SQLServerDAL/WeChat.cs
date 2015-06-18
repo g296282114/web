@@ -46,9 +46,9 @@ namespace torsion.SQLServerDAL
                     case "token":
                         model.token = dw["conValue"].ToString();
                         break;
-                    case "acToken":
-                        model.acToken = dw["conValue"].ToString();
-                        break;
+                    //case "acToken":
+                    //    model.acToken = dw["conValue"].ToString();
+                    //    break;
                     case "WeChatID":
                         model.WeChatID = dw["conValue"].ToString();
                         break;

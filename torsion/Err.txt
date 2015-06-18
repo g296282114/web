@@ -1,1 +1,13 @@
 ﻿bbbb
+poststr:{"AttFlag":1,"Checktime":"2015-06-16 17:56:41\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":2,"WorkType":0}
+{"AttFlag":1,"Checktime":"2015-06-16 17:56:41\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":2,"WorkType":0}
+poststr:{"AttFlag":1,"Checktime":"2015-06-17 15:22:15\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+{"AttFlag":1,"Checktime":"2015-06-17 15:22:15\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+poststr:{"AttFlag":1,"Checktime":"2015-06-17 15:22:21\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+{"AttFlag":1,"Checktime":"2015-06-17 15:22:21\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+poststr:{"AttFlag":1,"Checktime":"2015-06-17 15:22:26\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+{"AttFlag":1,"Checktime":"2015-06-17 15:22:26\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+poststr:{"AttFlag":1,"Checktime":"2015-06-17 15:22:29\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+{"AttFlag":1,"Checktime":"2015-06-17 15:22:29\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+poststr:{"AttFlag":1,"Checktime":"2015-06-17 18:53:54\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}
+poststr:{"AttFlag":1,"Checktime":"2015-06-17 18:53:54\u0000","Checktype":0,"OpenDoorFlag":0,"Sensorid":62358,"Userid":1,"WorkType":0}

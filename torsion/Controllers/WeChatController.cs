@@ -9,6 +9,7 @@ using System.Xml;
 using torsion.Models;
 using System.Net;
 using System.Web.Script.Serialization;
+using torsion.Model;
 
 
 namespace torsion.Controllers
@@ -93,24 +94,28 @@ namespace torsion.Controllers
         public ActionResult SendGlf()
         {
             //o3HeNt1A7dHe0hM5DAB46s2UhUIU
-            string strcon = "{\"touser\":\""+model.userID+"\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
-            System.Net.HttpWebRequest httpWebRequest = (HttpWebRequest)System.Net.WebRequest.Create("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + model.acToken);
-            httpWebRequest.Method = "POST";
-            byte[] postBytes = Encoding.UTF8.GetBytes(strcon);
-            //httpWebRequest.ContentType = "text/xml";
-            httpWebRequest.ContentType = "application/json; charset=utf-8";
-            // httpWebRequest.ContentLength = Encoding.UTF8.GetByteCount(data);
-            //strJson为json字符串 
-            Stream stream = httpWebRequest.GetRequestStream();
-            stream.Write(postBytes, 0, postBytes.Length);
-            stream.Close();
-            //发送完毕，接受返回值 
-            var response = httpWebRequest.GetResponse();
-            Stream streamResponse = response.GetResponseStream();
-            StreamReader streamRead = new StreamReader(streamResponse);
-            String responseString = streamRead.ReadToEnd();
-            WriteFile(Server.MapPath("~/log.txt"), "restr:" + responseString);
-            return Content(responseString); 
+            string surl = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + model.acToken;
+            string sdata = "{\"touser\":\"" + model.userID + "\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
+            string sret = GlobalController.Send_Post_String(surl, sdata);
+            //GlobalController.Send_Post_String(surl,sdata);
+            //string strcon = "{\"touser\":\""+model.userID+"\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
+            //System.Net.HttpWebRequest httpWebRequest = (HttpWebRequest)System.Net.WebRequest.Create("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + model.acToken);
+            //httpWebRequest.Method = "POST";
+            //byte[] postBytes = Encoding.UTF8.GetBytes(strcon);
+            ////httpWebRequest.ContentType = "text/xml";
+            //httpWebRequest.ContentType = "application/json; charset=utf-8";
+            //// httpWebRequest.ContentLength = Encoding.UTF8.GetByteCount(data);
+            ////strJson为json字符串 
+            //Stream stream = httpWebRequest.GetRequestStream();
+            //stream.Write(postBytes, 0, postBytes.Length);
+            //stream.Close();
+            ////发送完毕，接受返回值 
+            //var response = httpWebRequest.GetResponse();
+            //Stream streamResponse = response.GetResponseStream();
+            //StreamReader streamRead = new StreamReader(streamResponse);
+            //String responseString = streamRead.ReadToEnd();
+            //WriteFile(Server.MapPath("~/log.txt"), "restr:" + responseString);
+            return Content(sret); 
         }
 
         private string PostData(string url, string postData)
@@ -322,11 +327,10 @@ namespace torsion.Controllers
         {
             
             string gettokenurl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+model.appID+"&secret="+model.appsecret;
-            string restr = "";
-            restr = GetData(gettokenurl);
-            Access_Token j2 = new JavaScriptSerializer().Deserialize<Access_Token>(restr);
-            webll.UpdateConf("acToken",j2.access_token);
-            model.acToken = j2.access_token;
+            WeChat.Access_Token json = new JavaScriptSerializer().Deserialize<WeChat.Access_Token>(GetData(gettokenurl));
+            webll.UpdateConf("acToken", json.access_token);
+            model.actoken_expired = json.expires_in;
+            model.acToken = json.access_token;
 
         }
 

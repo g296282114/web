@@ -5,12 +5,12 @@ using System.Web;
 
 namespace torsion.Models
 {
-    public class Access_Token
-    {
-        public string access_token { get; set; }
-        public int expires_in { get; set; }
+    //public class Access_Token
+    //{
+    //    public string access_token { get; set; }
+    //    public int expires_in { get; set; }
 
-    }
+    //}
 
     public class WC_RequestXml
     {
