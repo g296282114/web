@@ -54,7 +54,7 @@ namespace torsion.Controllers
            //rejson.errcode = 0;
            //rejson.errmsg = "Ok";
            //wc.SendStr(json.Checktime);
-           return RedirectToAction("SendStr", "WeChat", new { json.Checktime}); 
+           return RedirectToAction("SendStr", "WeChat",json); 
            
          //  return new JavaScriptSerializer().Serialize(rejson);
         }

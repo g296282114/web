@@ -119,12 +119,15 @@ namespace torsion.Controllers
             return Content(sret); 
         }
 
-        public ActionResult SendStr(string Checktime)
+        public ActionResult SendStr(WeChat.JSEQdata json)
         {
-            Checktime = Checktime.Trim();
+            string sendstr = "";
+            sendstr += json.Userid.ToString() + "\n";
+            sendstr += json.Sensorid.ToString() + "\n";
+            sendstr += json.Checktime.ToString() + "\n";
             //o3HeNt1A7dHe0hM5DAB46s2UhUIU
             string surl = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + model.acToken;
-            string sdata = "{\"touser\":\"" + model.userID + "\",\"msgtype\":\"text\",\"text\":{\"content\":\"" + Checktime + "\"}}";
+            string sdata = "{\"touser\":\"" + model.userID + "\",\"msgtype\":\"text\",\"text\":{\"content\":\"" + sendstr + "\"}}";
             string sret = GlobalController.Send_Post_String(surl, sdata);
             //GlobalController.Send_Post_String(surl,sdata);
             //string strcon = "{\"touser\":\""+model.userID+"\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
