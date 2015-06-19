@@ -19,6 +19,7 @@ namespace torsion.Controllers
     {
             static torsion.BLL.WeChat webll = new torsion.BLL.WeChat();
             static torsion.Model.WeChat model = webll.GetModel();
+
          //   torsion.Model.WeChat model = new torsion.Model.WeChat();  
         //
         // GET: /WeChat/
@@ -116,6 +117,34 @@ namespace torsion.Controllers
             //String responseString = streamRead.ReadToEnd();
             //WriteFile(Server.MapPath("~/log.txt"), "restr:" + responseString);
             return Content(sret); 
+        }
+
+        public ActionResult SendStr(string Checktime)
+        {
+            Checktime = Checktime.Trim();
+            //o3HeNt1A7dHe0hM5DAB46s2UhUIU
+            string surl = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + model.acToken;
+            string sdata = "{\"touser\":\"" + model.userID + "\",\"msgtype\":\"text\",\"text\":{\"content\":\"" + Checktime + "\"}}";
+            string sret = GlobalController.Send_Post_String(surl, sdata);
+            //GlobalController.Send_Post_String(surl,sdata);
+            //string strcon = "{\"touser\":\""+model.userID+"\",\"msgtype\":\"text\",\"text\":{\"content\":\"Hello World\"}}";
+            //System.Net.HttpWebRequest httpWebRequest = (HttpWebRequest)System.Net.WebRequest.Create("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + model.acToken);
+            //httpWebRequest.Method = "POST";
+            //byte[] postBytes = Encoding.UTF8.GetBytes(strcon);
+            ////httpWebRequest.ContentType = "text/xml";
+            //httpWebRequest.ContentType = "application/json; charset=utf-8";
+            //// httpWebRequest.ContentLength = Encoding.UTF8.GetByteCount(data);
+            ////strJson为json字符串 
+            //Stream stream = httpWebRequest.GetRequestStream();
+            //stream.Write(postBytes, 0, postBytes.Length);
+            //stream.Close();
+            ////发送完毕，接受返回值 
+            //var response = httpWebRequest.GetResponse();
+            //Stream streamResponse = response.GetResponseStream();
+            //StreamReader streamRead = new StreamReader(streamResponse);
+            //String responseString = streamRead.ReadToEnd();
+            //WriteFile(Server.MapPath("~/log.txt"), "restr:" + responseString);
+            return Content(sret);
         }
 
         private string PostData(string url, string postData)

@@ -8,8 +8,8 @@ namespace torsion.Model
     {
         public class reJSON
         {
-            public int errCode { get; set; }
-            public string errMessage { get; set; }       
+            public int errcode { get; set; }
+            public string errmsg { get; set; }       
         }
         public class Access_Token
         {

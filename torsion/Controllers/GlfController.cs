@@ -17,7 +17,7 @@ namespace torsion.Controllers
         //model = bll.GetModel(id);
         //
         // GET: /Glf/
-
+      
         public string Index()
         {
             torsion.BLL.Admin bll = new torsion.BLL.Admin();
@@ -47,13 +47,16 @@ namespace torsion.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        public string GetPost(string str)
+        public ActionResult GetPost(string str)
         {
             WeChat.JSEQdata json = new JavaScriptSerializer().Deserialize<WeChat.JSEQdata>(GlobalController.Get_Post_String(Request));
-           WeChat.reJSON rejson = new WeChat.reJSON();
-           rejson.errCode = 1;
-           rejson.errMessage = "Success";
-           return new JavaScriptSerializer().Serialize(rejson);
+           //WeChat.reJSON rejson = new WeChat.reJSON();
+           //rejson.errcode = 0;
+           //rejson.errmsg = "Ok";
+           //wc.SendStr(json.Checktime);
+           return RedirectToAction("SendStr", "WeChat", new { json.Checktime}); 
+           
+         //  return new JavaScriptSerializer().Serialize(rejson);
         }
 
         public string Get_Post_String()
