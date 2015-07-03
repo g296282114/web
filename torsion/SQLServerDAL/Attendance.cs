@@ -22,5 +22,21 @@ namespace torsion.SQLServerDAL
 			return DbHelperSQL.Query(strSql.ToString());
 		}
 
+        public DataSet get_AttendanceInfo(int sid,DateTime sdt,DateTime edt)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select [Logid],[Userid],[CheckTime],[CheckType],[Sensorid],[WorkType],[AttFlag],[Checked],[Exported],[OpenDoorFlag] from checkinout where Userid = @Userid and CheckTime >= @sdt and CheckTime < @edt order by CheckTime");
+            SqlParameter[] selCIO = 
+            {
+                    new SqlParameter("@Userid", SqlDbType.Int),
+                    new SqlParameter("@sdt", SqlDbType.DateTime),
+                    new SqlParameter("@edt", SqlDbType.DateTime)
+            };
+            selCIO[0].Value = sid;
+            selCIO[1].Value = sdt;
+            selCIO[2].Value = edt;
+            return DbHelperSQL.Query(strSql.ToString(),selCIO);
+        }
+
     }
 }

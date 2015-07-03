@@ -124,6 +124,8 @@
     </Compile>
     <Compile Include="Admin.cs" />
     <Compile Include="Attendance.cs" />
+    <Compile Include="AttendanceSet.cs" />
+    <Compile Include="StaffInfo.cs" />
     <Compile Include="WeChat.cs" />
   </ItemGroup>
   <ItemGroup>

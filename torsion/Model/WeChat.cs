@@ -8,8 +8,40 @@ namespace torsion.Model
     {
         public class reJSON
         {
-            public int errcode { get; set; }
-            public string errmsg { get; set; }       
+            int _errcode = 0;
+            string _errmsg = "";
+            public int errcode 
+            {
+                get
+                {
+                    return _errcode;
+                }
+                set
+                {
+                    _errcode = value;
+                    switch (_errcode)
+                    {
+                        case 0:
+                            _errmsg = "Error";
+                            break;
+                        case 1:
+                            _errmsg = "Ok";
+                            break;
+                        default:
+                            _errmsg = "Unknown";
+                            break;
+                    }
+
+                }
+                   
+            }
+            public string errmsg 
+            {
+                get
+                {
+                    return _errmsg;
+                }
+            }       
         }
         public class Access_Token
         {
