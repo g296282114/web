@@ -24,6 +24,19 @@ namespace torsion.Controllers
             model = bll.GetModel(1);
             return model.UserName;
         }
+
+        public string gxl(int bb)
+        {
+            string str = "test"+bb.ToString();
+            return str;
+        }
+        [HttpPost]
+        public ActionResult gxx()
+        {
+        ActionResult rs = RedirectToAction("test","home", new { bb="gxx" });
+        return Content("kkk");
+           // return Content("ok");
+        }
         public string Attendance()
         {
             torsion.BLL.Attendance bll = new torsion.BLL.Attendance();

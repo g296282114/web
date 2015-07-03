@@ -16,7 +16,10 @@ namespace torsion.Controllers
 
             return View();
         }
-
+        public string Test(string bb)
+        {
+            return "Test" + bb;
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
