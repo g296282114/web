@@ -121,6 +121,8 @@
     </Compile>
     <Compile Include="IAdmin.cs" />
     <Compile Include="IAttendance.cs" />
+    <Compile Include="IAttendanceSet.cs" />
+    <Compile Include="IWeChat.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

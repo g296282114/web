@@ -51,7 +51,6 @@ D:\work\vs2010\MarkManagementSystem\SQLServerDAL\obj\Debug\SQLServerDAL.csprojRe
 D:\work\vs2010\MarkManagementSystem\SQLServerDAL\obj\Debug\MMS.SQLServerDAL.dll
 D:\work\vs2010\MarkManagementSystem\SQLServerDAL\obj\Debug\MMS.SQLServerDAL.pdb
 E:\GitHub\torsion\torsion\SQLServerDAL\bin\Debug\CodematicDemo.IDAL.dll
-E:\GitHub\torsion\torsion\SQLServerDAL\bin\Debug\MySql.Data.dll
 E:\GitHub\torsion\torsion\SQLServerDAL\bin\Debug\CodematicDemo.IDAL.pdb
 E:\GitHub\torsion\torsion\SQLServerDAL\obj\Debug\SQLServerDAL.csprojResolveAssemblyReference.cache
 E:\GitHub\torsion\torsion\SQLServerDAL\bin\Debug\torsion.SQLServerDAL.dll

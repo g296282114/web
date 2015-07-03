@@ -20,7 +20,10 @@ namespace torsion.BLL
             return dal.GetList(strWhere);
         }
 
- 
+        public DataSet get_AttendanceInfo(int sid, DateTime sdt, DateTime edt)
+        {
+            return dal.get_AttendanceInfo(sid,sdt,edt);
+        }
 
 
         #endregion

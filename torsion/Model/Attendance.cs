@@ -10,7 +10,21 @@ namespace torsion.Model
         
         public Attendance()
 		{}
+ 
+        public class AttendanceInfo
+        {
+          int logid{get;set;}
+          int Userid{get;set;}
+          DateTime CheckTime{get;set;}
+            int CheckType{get;set;}
+            int Sensorid {get;set;}
+            int WorkType {get;set;}
+            int AttFlag {get;set;}
+            int Checked {get;set;}
+            int Exported {get;set;}
+            int OpenDoorFlag {get;set;}
 
+        }
         private int _userCode;
         private string _userName;
         private DateTime? _attendanceTime;

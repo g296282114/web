@@ -14,7 +14,7 @@ namespace torsion.IDAL
         /// 获得数据列表
         /// </summary>
         DataSet GetList(string strWhere);
-
+        DataSet get_AttendanceInfo(int sid, DateTime sdt, DateTime edt);
         /// <summary>
         /// 得到一个对象实体
         /// </summary>

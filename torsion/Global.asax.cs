@@ -25,4 +25,5 @@ namespace torsion
             AuthConfig.RegisterAuth();
         }
     }
+ 
 }
