@@ -349,7 +349,8 @@ namespace WindowsForms
         }
         private void button6_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(torsion.Model.GlfGloFun.GenerateCheckCode());
+            return;
             MessageBox.Show(ConvertUnit(20.1, "").ToString());
             // getname();
             //StackTrace st = new StackTrace(true);

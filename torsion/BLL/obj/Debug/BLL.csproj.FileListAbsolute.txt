@@ -93,7 +93,6 @@ F:\My Files\web\web\web\torsion\BLL\bin\Debug\torsion.DALFactory.dll
 F:\My Files\web\web\web\torsion\BLL\bin\Debug\torsion.Model.dll
 F:\My Files\web\web\web\torsion\BLL\bin\Debug\torsion.SQLServerDAL.dll
 F:\My Files\web\web\web\torsion\BLL\bin\Debug\torsion.DBUtility.dll
-F:\My Files\web\web\web\torsion\BLL\bin\Debug\MySql.Data.dll
 F:\My Files\web\web\web\torsion\BLL\bin\Debug\torsion.DALFactory.pdb
 F:\My Files\web\web\web\torsion\BLL\bin\Debug\CodematicDemo.IDAL.pdb
 F:\My Files\web\web\web\torsion\BLL\bin\Debug\torsion.Model.pdb

@@ -6,11 +6,24 @@ using System.Diagnostics;
 using System.Data;
 using System.Reflection;
 
-namespace torsion.BLL
+namespace torsion.Model
 {
-    public static class  GlfGloFun
+    public static class GlfGloFun
     {
-
+        const int access_token_len = 30;
+        public static string GenerateCheckCode()
+        {
+            
+            string str = string.Empty;
+           
+            Random random = new Random();
+            for (int i = 0; i < access_token_len; i++)
+            {
+                int num = random.Next();
+                str = str + ((char)('A' + ((ushort)(num % 26)))).ToString();
+            }
+            return str;
+        }
         public static int get_DataRow(DataTable dt, int rn, object drai)
         {
             try
@@ -21,7 +34,7 @@ namespace torsion.BLL
 
                 foreach (PropertyInfo c in ci)
                 {
-                    if (dt.Columns.Contains(c.Name))
+                    if (dt.Columns.Contains(c.Name) && c.CanWrite)
                     {
 
                         if (c.PropertyType == typeof(string))
@@ -40,8 +53,33 @@ namespace torsion.BLL
             }
             return 1;
         }
-        
-        public static void Write_Err(string err,int errcode = 0)
+        public static int add_DataRow(DataSet ds, object drai)
+        {
+            try
+            {
+                Type tdrai = drai.GetType();
+                DataRow dr = ds.Tables[tdrai.Name].NewRow();
+                PropertyInfo[] ci = tdrai.GetProperties();
+                foreach (PropertyInfo c in ci)
+                {
+
+                    dr[c.Name] = c.GetValue(drai, null);
+
+                }
+                ds.Tables[tdrai.Name].Rows.Add(dr);
+
+            }
+            catch (Exception e)
+            {
+
+                GlfGloFun.Write_Err(e.Message);
+                return 0;
+            }
+
+
+            return 1;
+        }
+        public static void Write_Err(string err, int errcode = 0)
         {
 
             // System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;

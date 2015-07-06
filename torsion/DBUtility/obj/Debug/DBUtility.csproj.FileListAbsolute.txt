@@ -40,7 +40,6 @@ E:\GitHub\torsion\torsion\DBUtility\bin\Debug\torsion.Model.pdb
 F:\My Files\web\web\web\torsion\DBUtility\bin\Debug\torsion.DBUtility.dll.config
 F:\My Files\web\web\web\torsion\DBUtility\bin\Debug\torsion.DBUtility.dll
 F:\My Files\web\web\web\torsion\DBUtility\bin\Debug\torsion.DBUtility.pdb
-F:\My Files\web\web\web\torsion\DBUtility\bin\Debug\MySql.Data.dll
 F:\My Files\web\web\web\torsion\DBUtility\bin\Debug\torsion.DALFactory.dll
 F:\My Files\web\web\web\torsion\DBUtility\bin\Debug\CodematicDemo.IDAL.dll
 F:\My Files\web\web\web\torsion\DBUtility\bin\Debug\torsion.Model.dll

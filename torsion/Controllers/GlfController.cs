@@ -73,27 +73,45 @@ namespace torsion.Controllers
         }
 
         [HttpPost]
-        [HttpGet]
         [AllowAnonymous]
-        public ActionResult ConEq()
+        public ActionResult GetEq()
         {
             string postStr = "";
-            
 
+            System.Threading.Thread.Sleep(100000);
             Stream s = Request.InputStream;
             byte[] b = new byte[s.Length];
             s.Read(b, 0, (int)s.Length);
             postStr = Encoding.UTF8.GetString(b);
-            if (!string.IsNullOrEmpty(postStr))
-            {
-
-            }  
+            
             
             //WeChat.reJSON rejson = new WeChat.reJSON();
             //rejson.errcode = 0;
             //rejson.errmsg = "Ok";
             //wc.SendStr(json.Checktime);
-            return RedirectToAction("SendStr", "WeChat", json);
+            return Content("test:"+postStr);
+
+            //  return new JavaScriptSerializer().Serialize(rejson);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult DataEq()
+        {
+            string postStr = "";
+
+            System.Threading.Thread.Sleep(100000);
+            Stream s = Request.InputStream;
+            byte[] b = new byte[s.Length];
+            s.Read(b, 0, (int)s.Length);
+            postStr = Encoding.UTF8.GetString(b);
+
+
+            //WeChat.reJSON rejson = new WeChat.reJSON();
+            //rejson.errcode = 0;
+            //rejson.errmsg = "Ok";
+            //wc.SendStr(json.Checktime);
+            return Content("test:" + postStr);
 
             //  return new JavaScriptSerializer().Serialize(rejson);
         }

@@ -66,7 +66,6 @@ F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\torsion.SQLServerDAL.pdb
 F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\CodematicDemo.IDAL.dll
 F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\torsion.DBUtility.dll
 F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\torsion.Model.dll
-F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\MySql.Data.dll
 F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\torsion.DBUtility.pdb
 F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\CodematicDemo.IDAL.pdb
 F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\torsion.Model.pdb

@@ -140,6 +140,7 @@
     <Compile Include="Admin.cs" />
     <Compile Include="Attendance.cs" />
     <Compile Include="AttendanceSet.cs" />
+    <Compile Include="SoftInfo.cs" />
     <Compile Include="WeChat.cs" />
   </ItemGroup>
   <ItemGroup>
