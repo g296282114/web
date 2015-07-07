@@ -8,6 +8,11 @@ namespace torsion.Model
     {
         public class RecData
         {
+            public RecData()
+            {
+                cmd = 0;
+                cdata = "";
+            }
             public int errcode { get; set; }
             public int cmd { get; set; }
             public string cdata { get; set; }

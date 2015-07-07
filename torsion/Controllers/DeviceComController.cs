@@ -17,46 +17,63 @@ namespace torsion.Controllers
         {
             return null;
         }
-        
+        [AllowAnonymous]
+        public string ShowDevice()
+        {
+            return torsion.Model.GlfGloVar.TEST_STRING;
+        }
+
+        [AllowAnonymous]
+        public string TestDevice()
+        {
+            BLL.SoftInfo.gl_si[0].sendStr = "serversend";
+            BLL.SoftInfo.gl_si[0].cmd = 0x90;
+            
+            return "ok";
+        }
+
         [HttpPost]
         [AllowAnonymous]
         public string ConDevice()
-        {
-            
+        {         
             Model.SoftInfo tsi = new Model.SoftInfo();
-           
-            tsi.secretKey = "secretKey";
+
+            tsi.secretKey = GlobalController.Get_Post_String(Request);
             webll.con_SoftInfo(tsi);
+            if (tsi.assess_token == null) return Model.GlfGloVar.ERRSTR_UNREGISTERED;
             //WeChat.JSEQdata json = new JavaScriptSerializer().Deserialize<WeChat.JSEQdata>(GlobalController.Get_Post_String(Request));
             return tsi.assess_token;
         }
 
-        
+
         [HttpPost]
         [AllowAnonymous]
         public string ComDevice()
         {
-            Model.SoftInfo si = webll.get_SoftInfo("access_token");
-            Model.JsonModel.RecData json = new JavaScriptSerializer().Deserialize<Model.JsonModel.RecData>(GlobalController.Get_Post_String(Request)); ;
+
+            Model.JsonModel.RecData rjmrd = new Model.JsonModel.RecData();
+            try
+            {
+                Model.JsonModel.RecData jmrd = new JavaScriptSerializer().Deserialize<Model.JsonModel.RecData>(GlobalController.Get_Post_String(Request));
+                try
+                {
+                    webll.heartbeat(Request.QueryString["access_token"], jmrd, rjmrd);
+                }
+                catch(Exception e)
+                {
+                    rjmrd.cmd = torsion.Model.GlfGloVar.CMD_ERRCODE_OTHER;
+                    rjmrd.cdata = e.Message;
+                }
+                
+            }
+            catch
+            {
+                rjmrd.cmd = torsion.Model.GlfGloVar.CMD_ERRCODE_JSONFORMAT;
+            }
+            torsion.Model.GlfGloVar.TEST_STRING += rjmrd.cmd.ToString() + "    " + rjmrd.cdata + "<br/>";
             
-            //if (si != null)
-            //{
-            //    si.conStat = 1;
-            //    json = new JavaScriptSerializer().Deserialize<Model.JsonModel.RecData>(GlobalController.Get_Post_String(Request));
-            //    json.errcode = 1;
-            //    si.conStat = 2;
-            //    webll.heartbeat(si,json);
-            //}
-            //else
-            //{
-            //}
-            //if (json == null)
-            //{
-            //    json = new Model.JsonModel.RecData();
-            //    json.errcode = 3;
-            //    json.cdata = "json data error";
-            //}
-            return new JavaScriptSerializer().Serialize(webll.heartbeat(si, json));
+  
+            return new JavaScriptSerializer().Serialize(rjmrd);
         }
 
 

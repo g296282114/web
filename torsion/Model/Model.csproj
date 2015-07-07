@@ -126,6 +126,7 @@
     <Compile Include="Attendance.cs" />
     <Compile Include="AttendanceSet.cs" />
     <Compile Include="GlfGloFun.cs" />
+    <Compile Include="GlfGloVar.cs" />
     <Compile Include="JsonModel.cs" />
     <Compile Include="SoftInfo.cs" />
     <Compile Include="StaffInfo.cs" />

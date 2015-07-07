@@ -11,35 +11,51 @@ namespace torsion.BLL
         
         private readonly ISoftInfo dal = DataAccess.CreateSoftInfo();
 
-        public const int HeartBeatTime = 240000;//4分钟
-        public static List<Model.SoftInfo> gl_si = null;
+        public static List<Model.SoftInfo> gl_si = new List<Model.SoftInfo>();
 
         public int Update_SoftInfo(torsion.Model.SoftInfo tsi)
         {
             return dal.Update_SoftInfo(tsi);
         }
 
-        public Model.JsonModel.RecData heartbeat(Model.SoftInfo si, Model.JsonModel.RecData jmrd)
+        public Model.JsonModel.RecData heartbeat(string access_token, Model.JsonModel.RecData jmrd,Model.JsonModel.RecData rjmrd)
         {
-            Model.JsonModel.RecData rsmrd = new Model.JsonModel.RecData();
-
-            for(int i=0;i<=HeartBeatTime;i++)
+            torsion.Model.GlfGloVar.TEST_STRING += "com_softinfo" + "    " + access_token+"<br/>";
+             Model.SoftInfo si ;
+            for (int i = 0; i <= torsion.Model.GlfGloVar.SERVER_POST_TIMEOUT ; i += torsion.Model.GlfGloVar.SERVER_SLEEP_TIME)
             {
-                if (si.cmd != 0)
+                si = get_SoftInfo(access_token);
+                if (si == null)
                 {
-                    rsmrd.cmd = si.cmd;
-                    rsmrd.cdata = si.sendStr;
-                    return rsmrd;
+                    rjmrd.cmd = torsion.Model.GlfGloVar.CMD_NEEDCONNECT;
+                    return rjmrd;
                 }
-                System.Threading.Thread.Sleep(500);
+                switch (si.cmd)
+                {
+
+                    case torsion.Model.GlfGloVar.CMD_HEARTBEAT:
+                    case 0:
+                        System.Threading.Thread.Sleep(torsion.Model.GlfGloVar.SERVER_SLEEP_TIME);
+                        break;
+                    default:
+                        rjmrd.cmd = si.cmd;
+                        rjmrd.cdata = si.sendStr;
+                        si.cmd = torsion.Model.GlfGloVar.CMD_HEARTBEAT;
+                        return rjmrd;
+                        break;
+                }
+                
             }
-            rsmrd.cmd = 0;
-            return rsmrd;
+            rjmrd.cmd = torsion.Model.GlfGloVar.CMD_HEARTBEAT;
+            return rjmrd;
         }
 
         public int con_SoftInfo(torsion.Model.SoftInfo tsi)
         {
+            
             int ri = dal.con_SoftInfo(tsi);
+            if (ri != Model.GlfGloVar.RE_SUCCESS)
+                return ri;
             clean_SoftInfo(tsi.secretKey);
             do
             {
@@ -47,30 +63,34 @@ namespace torsion.BLL
             }
             while(get_SoftInfo(tsi.assess_token) != null);
             gl_si.Add(tsi);
+            torsion.Model.GlfGloVar.TEST_STRING += "con_softinfo" + "    " + tsi.assess_token + "<br/>";
             return ri;
         }
 
         public Model.SoftInfo get_SoftInfo(string access_token)
         {
             Model.SoftInfo rsi = null;
-            foreach (Model.SoftInfo si in gl_si)
+            for (int i = 0; i < gl_si.Count; i++)
             {
-                if (si.assess_token == access_token)
+                if (gl_si[i].assess_token == access_token)
                 {
-                    rsi = si;
+                    rsi = gl_si[i];
                 }
+            
             }
+          
             return rsi;
         }
         public void clean_SoftInfo(string secretKey = "")
         {
-            foreach (Model.SoftInfo si in gl_si)
+            for (int i = 0; i < gl_si.Count; i++)
             {
-                if (si.lastTime.AddHours(1) < DateTime.Now || si.secretKey == secretKey)
+                if (gl_si[i].lastTime.AddHours(1) < DateTime.Now || gl_si[i].secretKey == secretKey)
                 {
-                    gl_si.Remove(si);
+                    gl_si.Remove(gl_si[i]);
                 }
             }
+            
         }
 
 

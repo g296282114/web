@@ -10,14 +10,14 @@ namespace torsion.Model
 {
     public static class GlfGloFun
     {
-        const int access_token_len = 30;
+        
         public static string GenerateCheckCode()
         {
             
             string str = string.Empty;
            
             Random random = new Random();
-            for (int i = 0; i < access_token_len; i++)
+            for (int i = 0; i < torsion.Model.GlfGloVar.ACCESS_TOKEN_LEN; i++)
             {
                 int num = random.Next();
                 str = str + ((char)('A' + ((ushort)(num % 26)))).ToString();
