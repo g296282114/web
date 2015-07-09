@@ -28,7 +28,7 @@ namespace torsion.Model
         public  const string ERRSTR_UNREGISTERED = "unregistered";
 
 
-        public  const int SERVER_POST_TIMEOUT = 2 * 1000 * 60;
+        public  const int SERVER_POST_TIMEOUT =  1000 * 30;
         public const int CLIENT_POST_TIMEOUT = SERVER_POST_TIMEOUT + 1000 * 60;
 
         public  const int SERVER_SLEEP_TIME = 500;
