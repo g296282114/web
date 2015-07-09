@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
+
 namespace torsion.Controllers
 {
     public class DeviceComController : Controller
@@ -26,11 +27,29 @@ namespace torsion.Controllers
         [AllowAnonymous]
         public string TestDevice()
         {
-            BLL.SoftInfo.gl_si[0].sendStr = "serversend";
-            BLL.SoftInfo.gl_si[0].cmd = 0x90;
             
-            return "ok";
+            BLL.SoftInfo.gl_si[0].sendStr = "serversend";
+            BLL.SoftInfo.gl_si[0].conStat = 2;
+            BLL.SoftInfo.gl_si[0].cmd = torsion.Model.GlfGloVar.CMD_DEVICELIST;
+            //while (BLL.SoftInfo.gl_si[0].conStat < 4)
+            //{
+            //    System.Threading.Thread.Sleep(500);
+            //}
+
+            return BLL.SoftInfo.gl_si[0].recStr;
         }
+        [AllowAnonymous]
+        public string DeviceList()
+        {
+           return webll.DeviceList(BLL.SoftInfo.gl_si[0].assess_token).ToString();
+            //while (BLL.SoftInfo.gl_si[0].conStat < 4)
+            //{
+            //    System.Threading.Thread.Sleep(500);
+            //}
+
+
+        }
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -44,11 +63,32 @@ namespace torsion.Controllers
             //WeChat.JSEQdata json = new JavaScriptSerializer().Deserialize<WeChat.JSEQdata>(GlobalController.Get_Post_String(Request));
             return tsi.assess_token;
         }
+        [HttpPost]
+        [AllowAnonymous]
+        public string RecDevice()
+        {
+            try
+            {
+                Model.JsonModel.RecData jmrd = new Model.JsonModel.RecData();
+                jmrd = Newtonsoft.Json.JsonConvert.DeserializeObject<Model.JsonModel.RecData>(GlobalController.Get_Post_String(Request));
+                return Newtonsoft.Json.JsonConvert.SerializeObject(webll.RecDevice(Request.QueryString["access_token"],jmrd));
 
-
+            }
+            catch
+            {
+                return "";
+            }
+           
+        }
         [HttpPost]
         [AllowAnonymous]
         public string ComDevice()
+        {
+           return Newtonsoft.Json.JsonConvert.SerializeObject(webll.ComDevice(GlobalController.Get_Post_String(Request)));
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public string CommDevice()
         {
 
             Model.JsonModel.RecData rjmrd = new Model.JsonModel.RecData();

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
+using Newtonsoft.Json;
 namespace WindowsForms
 {
     public partial class Form1 : Form
@@ -405,6 +406,13 @@ namespace WindowsForms
                 }
             }
             return rvar;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            torsion.Model.DeviceInfo[] di = new torsion.Model.DeviceInfo[0];
+         
+            MessageBox.Show( JsonConvert.SerializeObject(di));
         }
 
     }

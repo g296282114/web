@@ -15,6 +15,7 @@ namespace torsion.IDAL
         /// </summary>
         DataSet GetList(string strWhere);
         DataSet get_AttendanceInfo(int sid, DateTime sdt, DateTime edt);
+        int Insert_AttendanceInfo(torsion.Model.Attendance.AttendanceInfo[] aai);
         /// <summary>
         /// 得到一个对象实体
         /// </summary>

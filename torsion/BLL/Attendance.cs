@@ -24,7 +24,10 @@ namespace torsion.BLL
         {
             return dal.get_AttendanceInfo(sid,sdt,edt);
         }
-
+        public int Insert_AttendanceInfo(torsion.Model.Attendance.AttendanceInfo[] aai)
+        {
+            return dal.Insert_AttendanceInfo(aai);
+        }
 
         #endregion
     }

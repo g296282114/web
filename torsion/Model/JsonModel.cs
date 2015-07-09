@@ -12,8 +12,9 @@ namespace torsion.Model
             {
                 cmd = 0;
                 cdata = "";
+                stat = 0;
             }
-            public int errcode { get; set; }
+            public int stat { get; set; }
             public int cmd { get; set; }
             public string cdata { get; set; }
         }

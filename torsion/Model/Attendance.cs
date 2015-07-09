@@ -10,21 +10,33 @@ namespace torsion.Model
         
         public Attendance()
 		{}
+        public class JsonAttendance
+        {
+            public JsonAttendance()
+            {
+                errnum = 0;
+            }
+            public int allnum { get; set; }
+            public int sendnum { get; set; }
+            public int errnum { get; set; }
+            public AttendanceInfo[] aai;
+        }
  
         public class AttendanceInfo
         {
-          int logid{get;set;}
-          int Userid{get;set;}
-          DateTime CheckTime{get;set;}
-            int CheckType{get;set;}
-            int Sensorid {get;set;}
-            int WorkType {get;set;}
-            int AttFlag {get;set;}
-            int Checked {get;set;}
-            int Exported {get;set;}
-            int OpenDoorFlag {get;set;}
+          public int logid{get;set;}
+          public int Userid { get; set; }
+          public DateTime CheckTime { get; set; }
+          public int CheckType { get; set; }
+          public int Sensorid { get; set; }
+          public int WorkType { get; set; }
+          public int AttFlag { get; set; }
+          public int Checked { get; set; }
+          public int Exported { get; set; }
+          public int OpenDoorFlag { get; set; }
 
         }
+        
         private int _userCode;
         private string _userName;
         private DateTime? _attendanceTime;

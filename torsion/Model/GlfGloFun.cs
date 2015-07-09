@@ -10,7 +10,7 @@ namespace torsion.Model
 {
     public static class GlfGloFun
     {
-        
+   
         public static string GenerateCheckCode()
         {
             
@@ -89,8 +89,27 @@ namespace torsion.Model
             StreamWriter sw = null;
             try
             {
-                sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Err.log", true, System.Text.Encoding.UTF8);
+                sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Err.txt", true, System.Text.Encoding.UTF8);
                 sw.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "      " + st.GetFrame(1).GetMethod().Name.PadRight(30) + errcode.ToString().PadRight(10) + err + System.Environment.NewLine);
+                sw.Flush();
+            }
+            finally
+            {
+                sw.Close();
+            }
+
+        }
+        public static void Write_Log(string err, int errcode = 0)
+        {
+
+            // System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+
+            //  System.IO.File.WriteAllText(@"Err.txt",str);
+            StreamWriter sw = null;
+            try
+            {
+                sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Log.txt", true, System.Text.Encoding.UTF8);
+                sw.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "      " + err + System.Environment.NewLine);
                 sw.Flush();
             }
             finally

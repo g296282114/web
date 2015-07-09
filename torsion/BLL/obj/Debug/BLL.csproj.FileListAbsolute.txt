@@ -101,3 +101,5 @@ F:\My Files\web\web\web\torsion\BLL\bin\Debug\torsion.DBUtility.pdb
 F:\My Files\web\web\web\torsion\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 F:\My Files\web\web\web\torsion\BLL\obj\Debug\torsion.BLL.dll
 F:\My Files\web\web\web\torsion\BLL\obj\Debug\torsion.BLL.pdb
+E:\GitHub\torsion\torsion\BLL\bin\Debug\Newtonsoft.Json.dll
+E:\GitHub\torsion\torsion\BLL\bin\Debug\Newtonsoft.Json.xml

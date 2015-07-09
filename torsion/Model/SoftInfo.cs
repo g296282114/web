@@ -18,5 +18,6 @@ namespace torsion.Model
         public int cmd { get; set; }
         public string sendStr { get; set; }
         public string recStr { get; set; }
+        public List<torsion.Model.DeviceInfo> di = new List<DeviceInfo>();
     }
 }

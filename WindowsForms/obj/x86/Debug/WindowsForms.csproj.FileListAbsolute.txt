@@ -40,3 +40,5 @@ F:\My Files\web\web\web\WindowsForms\obj\x86\Debug\WindowsForms.csprojResolveAss
 F:\My Files\web\web\web\WindowsForms\obj\x86\Debug\WindowsForms.Form1.resources
 F:\My Files\web\web\web\WindowsForms\obj\x86\Debug\WindowsForms.Properties.Resources.resources
 F:\My Files\web\web\web\WindowsForms\obj\x86\Debug\WindowsForms.csproj.GenerateResource.Cache
+E:\GitHub\torsion\WindowsForms\bin\Debug\Newtonsoft.Json.dll
+E:\GitHub\torsion\WindowsForms\bin\Debug\Newtonsoft.Json.xml

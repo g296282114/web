@@ -15,26 +15,26 @@ namespace torsion.Controllers
         // GET: /Global/
         
 
-        public static bool Write_Err(string str)
-        {
+        //public static bool Write_Err(string str)
+        //{
 
-            // System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+        //    // System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
         
-          //  System.IO.File.WriteAllText(@"Err.txt",str);
-            StreamWriter sw = null;
-            try
-            {
-                sw = new StreamWriter( System.AppDomain.CurrentDomain.BaseDirectory+"Err.txt", true, System.Text.Encoding.UTF8);
-                sw.Write(str + "\r\n");
-                sw.Flush();
-            }
-            finally
-            {
-                sw.Close();
-            }
-            return true;
+        //  //  System.IO.File.WriteAllText(@"Err.txt",str);
+        //    StreamWriter sw = null;
+        //    try
+        //    {
+        //        sw = new StreamWriter( System.AppDomain.CurrentDomain.BaseDirectory+"Err.txt", true, System.Text.Encoding.UTF8);
+        //        sw.Write(str + "\r\n");
+        //        sw.Flush();
+        //    }
+        //    finally
+        //    {
+        //        sw.Close();
+        //    }
+        //    return true;
 
-        }
+        //}
         public static string Get_Post_String(HttpRequestBase request)
         {
             string postStr = "";
@@ -44,10 +44,7 @@ namespace torsion.Controllers
                 byte[] b = new byte[s.Length];
                 s.Read(b, 0, (int)s.Length);
                 postStr = Encoding.UTF8.GetString(b);
-                if (!string.IsNullOrEmpty(postStr))
-                {
-                    Write_Err("poststr:" + postStr);
-                }                 //WriteLog("postStr:" + postStr);
+                               //WriteLog("postStr:" + postStr);
             }
             return postStr;
         }

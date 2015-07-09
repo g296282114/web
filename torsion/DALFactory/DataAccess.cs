@@ -89,6 +89,12 @@ namespace torsion.DALFactory
             object objType = CreateObject(AssemblyPath, ClassNamespace);
             return (torsion.IDAL.ISoftInfo)objType;
         }
+        public static torsion.IDAL.IDeviceInfo CreateDeviceInfo()
+        {
+            string ClassNamespace = AssemblyPath + ".DeviceInfo";
+            object objType = CreateObject(AssemblyPath, ClassNamespace);
+            return (torsion.IDAL.IDeviceInfo)objType;
+        }
         
 
 }

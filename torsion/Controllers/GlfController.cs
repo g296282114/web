@@ -199,10 +199,6 @@ namespace torsion.Controllers
             return "";
         }
 
-        public string test()
-        {
-            GlobalController.Write_Err("bbbb");
-            return "ok";
-        }
+ 
     }
 }
