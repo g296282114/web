@@ -62,6 +62,17 @@ namespace torsion.Controllers
 
 
         }
+        [AllowAnonymous]
+        public string OpenLock()
+        {
+            return webll.OpenLock(BLL.SoftInfo.gl_si[0].assess_token).ToString();
+            //while (BLL.SoftInfo.gl_si[0].conStat < 4)
+            //{
+            //    System.Threading.Thread.Sleep(500);
+            //}
+
+
+        }
 
 
         [HttpPost]

@@ -15,6 +15,7 @@ namespace torsion.Model
         public  const int CMD_NEEDCONNECT = 0x20 + 0xff;
         public const int CMD_DEVICELIST = 0x30 + 0xff;
         public const int CMD_NEWRECORD = 0x40 + 0xff;
+        public const int CMD_OPENLOCK = 0x50 + 0xff;
 
         public  const int CMD_ERRCODE_OTHER = 0x01 + 0xffff;
         public  const int CMD_ERRCODE_JSONFORMAT = 0x10 + 0xffff;

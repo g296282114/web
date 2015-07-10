@@ -26,6 +26,21 @@ namespace torsion.BLL
 
             return torsion.Model.GlfGloVar.RE_SUCCESS;
         }
+        public int OpenLock(string access_token)
+        {
+            try
+            {
+                Model.SoftInfo si = get_SoftInfo(access_token);
+                if (si == null)
+                    return 0;
+                return ServerSendData(si, torsion.Model.GlfGloVar.CMD_OPENLOCK, "0", 2);
+            }
+            catch (Exception e)
+            {
+                Model.GlfGloFun.Write_Err(e.Message);
+            }
+            return 0;
+        }
         public int DeviceList(string access_token)
         {
             try
@@ -104,7 +119,7 @@ namespace torsion.BLL
                         rjmrd.cmd = si.cmd;
                         rjmrd.stat = si.conStat;
                         rjmrd.cdata = si.sendStr;
-                        Model.GlfGloFun.Write_Log(si.softName + ":" + si.cmd);
+                        Model.GlfGloFun.Write_Log("sendCmd:"+si.softName + ":" + si.cmd);
                         return rjmrd;
                     }
                     si.lastTime = DateTime.Now;
