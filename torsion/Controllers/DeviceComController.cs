@@ -21,8 +21,21 @@ namespace torsion.Controllers
         [AllowAnonymous]
         public string ShowDevice()
         {
-            return torsion.Model.GlfGloVar.TEST_STRING;
+            string str = DateTime.Now.ToString()+"<br/>";
+            foreach (torsion.Model.SoftInfo si in BLL.SoftInfo.gl_si)
+            {
+                str += si.lastTime.ToString() + ":" + si.softName + "<br/>";
+                
+            }
+            return str;
         }
+
+        [AllowAnonymous]
+        public string getdate()
+        {
+            return DateTime.Now.ToString();
+        }
+
 
         [AllowAnonymous]
         public string TestDevice()
@@ -86,35 +99,35 @@ namespace torsion.Controllers
         {
            return Newtonsoft.Json.JsonConvert.SerializeObject(webll.ComDevice(GlobalController.Get_Post_String(Request)));
         }
-        [HttpPost]
-        [AllowAnonymous]
-        public string CommDevice()
-        {
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public string CommDevice()
+        //{
 
-            Model.JsonModel.RecData rjmrd = new Model.JsonModel.RecData();
-            try
-            {
-                Model.JsonModel.RecData jmrd = new JavaScriptSerializer().Deserialize<Model.JsonModel.RecData>(GlobalController.Get_Post_String(Request));
-                try
-                {
-                    webll.heartbeat(Request.QueryString["access_token"], jmrd, rjmrd);
-                }
-                catch(Exception e)
-                {
-                    rjmrd.cmd = torsion.Model.GlfGloVar.CMD_ERRCODE_OTHER;
-                    rjmrd.cdata = e.Message;
-                }
+        //    Model.JsonModel.RecData rjmrd = new Model.JsonModel.RecData();
+        //    try
+        //    {
+        //        Model.JsonModel.RecData jmrd = new JavaScriptSerializer().Deserialize<Model.JsonModel.RecData>(GlobalController.Get_Post_String(Request));
+        //        try
+        //        {
+        //            webll.heartbeat(Request.QueryString["access_token"], jmrd, rjmrd);
+        //        }
+        //        catch(Exception e)
+        //        {
+        //            rjmrd.cmd = torsion.Model.GlfGloVar.CMD_ERRCODE_OTHER;
+        //            rjmrd.cdata = e.Message;
+        //        }
                 
-            }
-            catch
-            {
-                rjmrd.cmd = torsion.Model.GlfGloVar.CMD_ERRCODE_JSONFORMAT;
-            }
-            torsion.Model.GlfGloVar.TEST_STRING += rjmrd.cmd.ToString() + "    " + rjmrd.cdata + "<br/>";
+        //    }
+        //    catch
+        //    {
+        //        rjmrd.cmd = torsion.Model.GlfGloVar.CMD_ERRCODE_JSONFORMAT;
+        //    }
+        //    torsion.Model.GlfGloVar.TEST_STRING += rjmrd.cmd.ToString() + "    " + rjmrd.cdata + "<br/>";
             
   
-            return new JavaScriptSerializer().Serialize(rjmrd);
-        }
+        //    return new JavaScriptSerializer().Serialize(rjmrd);
+        //}
 
 
 
