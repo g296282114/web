@@ -23,6 +23,8 @@ namespace torsion
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+            //Model.GlfGloFun.Write_Err("error start");
+            //Model.GlfGloFun.Write_Log("log start");
         }
     }
  

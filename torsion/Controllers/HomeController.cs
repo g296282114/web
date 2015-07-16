@@ -16,9 +16,9 @@ namespace torsion.Controllers
 
             return View();
         }
-        public string Test(string bb)
+        public ActionResult Test(string bb)
         {
-            return "Test" + bb;
+            return View();
         }
         public ActionResult About()
         {

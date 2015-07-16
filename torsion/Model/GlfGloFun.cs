@@ -85,10 +85,11 @@ namespace torsion.Model
             // System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
 
             //  System.IO.File.WriteAllText(@"Err.txt",str);
-            StackTrace st = new StackTrace(true);
+            
             StreamWriter sw = null;
             try
             {
+                StackTrace st = new StackTrace(true);
                 sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Err.txt", true, System.Text.Encoding.UTF8);
                 sw.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "      " + st.GetFrame(1).GetMethod().Name.PadRight(30) + errcode.ToString().PadRight(10) + err + System.Environment.NewLine);
                 sw.Flush();
