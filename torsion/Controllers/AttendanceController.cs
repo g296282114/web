@@ -33,7 +33,7 @@ namespace torsion.Controllers
                 adg.rows[i].name = ds.Tables[0].Rows[i]["name"].ToString();
                 adg.rows[i].sensorid = int.Parse(ds.Tables[0].Rows[i]["sensorid"].ToString());
                 adg.rows[i].usercode = int.Parse(ds.Tables[0].Rows[i]["usercode"].ToString());
-                adg.rows[i].checktime = ds.Tables[0].Rows[i]["checktime"].ToString();
+                adg.rows[i].checktime = Convert.ToDateTime(ds.Tables[0].Rows[i]["checktime"].ToString()).ToString("yyyy-MM-dd HH:mm:ss");
                 tlsensorid += adg.rows[i].sensorid;
                 tlusercode += adg.rows[i].usercode;
 
