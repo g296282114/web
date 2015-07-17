@@ -18,5 +18,6 @@ namespace torsion.Model
             public int cmd { get; set; }
             public string cdata { get; set; }
         }
+        
     }
 }
