@@ -18,9 +18,33 @@ namespace torsion.Controllers
         {
             return View();
         }
+        public ActionResult test()
+        {
+            return View();
+        }
         public string GetData()
         {
-            DataSet ds = webll.GetList("");
+            string tmpstr = " ";
+            if (Request.QueryString["name"] != null)
+                if (Request.QueryString["name"].ToString().Trim() != "")
+                {
+
+                    tmpstr += "name = '" + Request.QueryString["name"].Trim() + "' ";
+                }
+            if (Request.QueryString["start"] != null)
+                if (Request.QueryString["start"].ToString().Trim() != "")
+                {
+                    if (tmpstr.Trim() != "") tmpstr += " and ";
+                    tmpstr += "checktime >= '" + Request.QueryString["start"].Trim() + "' ";
+
+                }
+            if (Request.QueryString["end"] != null)
+                if (Request.QueryString["end"].ToString().Trim() != "")
+                {
+                    if (tmpstr.Trim() != "") tmpstr += " and ";
+                    tmpstr += "checktime <'" + Request.QueryString["end"].Trim() + "'";
+                }
+            DataSet ds = webll.GetList(tmpstr);
             AttdanceDataGrid adg = new AttdanceDataGrid();
             adg.total = ds.Tables[0].Rows.Count;
             adg.rows = new AttdanceJson[adg.total];
