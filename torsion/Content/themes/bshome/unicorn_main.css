@@ -215,7 +215,7 @@ a:hover {
 	background-image: -o-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
 	background-image: linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
     border-top-left-radius: 8px;
-    height: 80px;
+    height: 13px;
     position: abslute;
     width: 100%;
     margin-top: -38px;
@@ -1348,7 +1348,7 @@ form {
 	}
 	#content-header {
 		margin-top: 0;
-		height: 140px;
+		height: 10px;
 		text-align: center;
 	}
 	#content-header h1, #content-header .btn-group {
