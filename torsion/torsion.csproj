@@ -598,6 +598,8 @@
     <Content Include="Content\themes\mobile.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bshome\bootstrap.min.js" />
+    <Content Include="Scripts\bshome\unicorn.js" />
     <Content Include="Scripts\easyloader.js" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
