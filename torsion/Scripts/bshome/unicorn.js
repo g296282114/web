@@ -57,13 +57,11 @@ $(document).ready(function(){
 	// === Resize window related === //
 	$(window).resize(function()
 	{
-		if($(window).width() > 479)
-		{
+		if($(window).width() > 479) {
 			ul.css({'display':'block'});	
 			$('#content-header .btn-group').css({width:'auto'});		
 		}
-		if($(window).width() < 479)
-		{
+		if($(window).width() < 479) {
 			ul.css({'display':'none'});
 			fix_position();
 		}

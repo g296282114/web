@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="UTF-8" />
+    <title>test</title>
+	<link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css">
+	<link rel="stylesheet" type="text/css" href="~/Content/themes/icon.css">
+	<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script> 
+</head>
+<body>
+    <div style="margin:20px 0;"></div>
+    <div class="easyui-tabs" data-options="tools:'#tab-tools'" style="width:700px;height:250px">
+        <div title="Sub Tabs" style="padding:10px;">
+            <div class="easyui-tabs" data-options="fit:true,plain:true">
+                <div title="Title1" style="padding:10px;">Content 1</div>
+                <div title="Title2" style="padding:10px;">Content 2</div>
+                <div title="Title3" style="padding:10px;">Content 3</div>
+            </div>
+        </div>
+        <div title="Iframe" data-options="closable:true" style="overflow:hidden">
+            <iframe scrolling="yes" frameborder="0"  src="http://www.jeasyui.com/forum/index.php" style="width:100%;height:100%;"></iframe>
+        </div>
+    </div>
+ 
+</body>
+</html>

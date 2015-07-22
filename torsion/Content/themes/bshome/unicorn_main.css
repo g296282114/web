@@ -199,7 +199,7 @@ a:hover {
     background: none repeat scroll 0 0 #eeeeee;
     margin-left: 220px;
     margin-right: 0;
-    padding-bottom: 25px;
+    padding-bottom: 0px;
     position: relative;
     min-height: 500px;
     width: auto;
@@ -250,7 +250,7 @@ a:hover {
 }
 
 .container-fluid .row-fluid:first-child {
-	margin-top: 20px;
+	margin-top: 0px;
 }
 /* Breadcrumb */
 #breadcrumb {
@@ -1323,7 +1323,7 @@ form {
 /* Responsive design */
 @media (max-width: 480px) {
 	#header h1 {
-		top: auto;
+		top: 7px;
 		left: auto;
 		margin: 3px auto;
 	}
@@ -1489,8 +1489,8 @@ form {
 		padding: 0 !important;
 	}
 	.container-fluid {
-		padding-left: 20px;
-		padding-right: 20px;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 	#search { display: none; }
 	#user-nav > ul > li > a > span.text {
