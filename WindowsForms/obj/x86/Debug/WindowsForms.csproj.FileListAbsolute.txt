@@ -42,3 +42,26 @@ F:\My Files\web\web\web\WindowsForms\obj\x86\Debug\WindowsForms.Properties.Resou
 F:\My Files\web\web\web\WindowsForms\obj\x86\Debug\WindowsForms.csproj.GenerateResource.Cache
 E:\GitHub\torsion\WindowsForms\bin\Debug\Newtonsoft.Json.dll
 E:\GitHub\torsion\WindowsForms\bin\Debug\Newtonsoft.Json.xml
+F:\My Files\web\web\WindowsForms\bin\Debug\WindowsForms.exe.config
+F:\My Files\web\web\WindowsForms\bin\Debug\WindowsForms.exe
+F:\My Files\web\web\WindowsForms\bin\Debug\WindowsForms.pdb
+F:\My Files\web\web\WindowsForms\bin\Debug\Newtonsoft.Json.dll
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.BLL.dll
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.Model.dll
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.SQLServerDAL.dll
+F:\My Files\web\web\WindowsForms\bin\Debug\CodematicDemo.IDAL.dll
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.DALFactory.dll
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.DBUtility.dll
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.BLL.pdb
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.Model.pdb
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.SQLServerDAL.pdb
+F:\My Files\web\web\WindowsForms\bin\Debug\Newtonsoft.Json.xml
+F:\My Files\web\web\WindowsForms\bin\Debug\CodematicDemo.IDAL.pdb
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.DALFactory.pdb
+F:\My Files\web\web\WindowsForms\bin\Debug\torsion.DBUtility.pdb
+F:\My Files\web\web\WindowsForms\obj\x86\Debug\WindowsForms.csprojResolveAssemblyReference.cache
+F:\My Files\web\web\WindowsForms\obj\x86\Debug\WindowsForms.Form1.resources
+F:\My Files\web\web\WindowsForms\obj\x86\Debug\WindowsForms.Properties.Resources.resources
+F:\My Files\web\web\WindowsForms\obj\x86\Debug\WindowsForms.csproj.GenerateResource.Cache
+F:\My Files\web\web\WindowsForms\obj\x86\Debug\WindowsForms.exe
+F:\My Files\web\web\WindowsForms\obj\x86\Debug\WindowsForms.pdb

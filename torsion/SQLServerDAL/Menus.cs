@@ -19,19 +19,22 @@ namespace torsion.SQLServerDAL
                 DataSet ds = DbHelperSQL.Query(strSql.ToString());
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    mm.mt = new Model.Menus.MenusTitle[ds.Tables[0].Rows.Count];
                     Model.Menus.MenusTitle tmmt = null;
+                    Model.Menus.ParMenus mpm = null;
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        mm.mt[i] = new Model.Menus.MenusTitle();
-                        torsion.Model.GlfGloFun.get_DataRow(ds.Tables[0], i, mm.mt[i]);
-                        if (mm.mt[i].parid <= 0)
+                        tmmt = new Model.Menus.MenusTitle();
+                        torsion.Model.GlfGloFun.get_DataRow(ds.Tables[0], i, tmmt);
+                        if (tmmt.parid <= 0)
                         {
-                            tmmt = mm.mt[i];
-                            tmmt.subnum = 0;
-                        }  
+                            mpm = new Model.Menus.ParMenus();
+                            mpm.par = tmmt;
+                            mm.lpm.Add(mpm);
+                        }
                         else
-                            tmmt.subnum += 1;
+                        {
+                            mpm.sub.Add(tmmt);
+                        }
 
                     }
                 }

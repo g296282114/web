@@ -72,3 +72,14 @@ F:\My Files\web\web\web\torsion\SQLServerDAL\bin\Debug\torsion.Model.pdb
 F:\My Files\web\web\web\torsion\SQLServerDAL\obj\Debug\SQLServerDAL.csprojResolveAssemblyReference.cache
 F:\My Files\web\web\web\torsion\SQLServerDAL\obj\Debug\torsion.SQLServerDAL.dll
 F:\My Files\web\web\web\torsion\SQLServerDAL\obj\Debug\torsion.SQLServerDAL.pdb
+F:\My Files\web\web\torsion\SQLServerDAL\bin\Debug\torsion.SQLServerDAL.dll
+F:\My Files\web\web\torsion\SQLServerDAL\bin\Debug\torsion.SQLServerDAL.pdb
+F:\My Files\web\web\torsion\SQLServerDAL\bin\Debug\CodematicDemo.IDAL.dll
+F:\My Files\web\web\torsion\SQLServerDAL\bin\Debug\torsion.DBUtility.dll
+F:\My Files\web\web\torsion\SQLServerDAL\bin\Debug\torsion.Model.dll
+F:\My Files\web\web\torsion\SQLServerDAL\bin\Debug\torsion.DBUtility.pdb
+F:\My Files\web\web\torsion\SQLServerDAL\bin\Debug\CodematicDemo.IDAL.pdb
+F:\My Files\web\web\torsion\SQLServerDAL\bin\Debug\torsion.Model.pdb
+F:\My Files\web\web\torsion\SQLServerDAL\obj\Debug\SQLServerDAL.csprojResolveAssemblyReference.cache
+F:\My Files\web\web\torsion\SQLServerDAL\obj\Debug\torsion.SQLServerDAL.dll
+F:\My Files\web\web\torsion\SQLServerDAL\obj\Debug\torsion.SQLServerDAL.pdb

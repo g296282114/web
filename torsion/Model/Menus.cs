@@ -7,7 +7,7 @@ namespace torsion.Model
 {
     public class Menus
     {
-        public MenusTitle[] mt;
+        public List<ParMenus> lpm = new List<ParMenus>();
         public class MenusTitle
         {
             public int id { get; set; }
@@ -15,9 +15,13 @@ namespace torsion.Model
             public int parid { get; set; }
             public string ico { get; set; }
             public string url { get; set; }
-            public int subnum { get; set; }
+
         }
-        
+        public class ParMenus
+        {
+            public MenusTitle par;
+            public List<MenusTitle> sub = new List<MenusTitle>();
+        }
 
     }
 }

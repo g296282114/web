@@ -76,3 +76,12 @@ F:\My Files\web\web\web\torsion\DALFactory\bin\Debug\torsion.Model.pdb
 F:\My Files\web\web\web\torsion\DALFactory\obj\Debug\DALFactory.csprojResolveAssemblyReference.cache
 F:\My Files\web\web\web\torsion\DALFactory\obj\Debug\torsion.DALFactory.dll
 F:\My Files\web\web\web\torsion\DALFactory\obj\Debug\torsion.DALFactory.pdb
+F:\My Files\web\web\torsion\DALFactory\bin\Debug\torsion.DALFactory.dll
+F:\My Files\web\web\torsion\DALFactory\bin\Debug\torsion.DALFactory.pdb
+F:\My Files\web\web\torsion\DALFactory\bin\Debug\CodematicDemo.IDAL.dll
+F:\My Files\web\web\torsion\DALFactory\bin\Debug\torsion.Model.dll
+F:\My Files\web\web\torsion\DALFactory\bin\Debug\CodematicDemo.IDAL.pdb
+F:\My Files\web\web\torsion\DALFactory\bin\Debug\torsion.Model.pdb
+F:\My Files\web\web\torsion\DALFactory\obj\Debug\DALFactory.csprojResolveAssemblyReference.cache
+F:\My Files\web\web\torsion\DALFactory\obj\Debug\torsion.DALFactory.dll
+F:\My Files\web\web\torsion\DALFactory\obj\Debug\torsion.DALFactory.pdb

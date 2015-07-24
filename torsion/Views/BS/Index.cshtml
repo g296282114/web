@@ -47,33 +47,33 @@
     <div id="sidebar">
         <a href="#" class="visible-phone"><i class="icon icon-th-list"></i>Menus</a>
         <ul style="display: block;">
-        @{
-            string tsr = "<li class='active'>";
-        } 
-            @foreach (torsion.Model.Menus.MenusTitle mmt in Model.mt)
+    
+            @foreach (torsion.Model.Menus.ParMenus mmt in Model.lpm)
             {
-                if (mmt.parid <= 0)
-                {
-                    <a href="#" frameurl="@mmt.url" onclick="seltab(this)" menuid=@mmt.id parid=@mmt.parid>
-               <i class="icon @mmt.ico"></i>
-               <span>@mmt.name</span> 
-               @if (@mmt.subnum > 0)
+                string str = mmt.par.parid == -1 ? "active" : "submenu";
+             
+                <li class="@str> 
+                <a href="#" frameurl="@mmt.par.url" onclick="seltab(this)" menuid=@mmt.par.id parid=@mmt.par.parid>
+               
+               <i class="icon @mmt.par.ico"></i>
+               <span>@mmt.par.name</span> 
+
+               @if(mmt.sub.Count > 0)
                {
-                   <span class="label">@mmt.subnum</span>
+                   <span class="label">@mmt.sub.Count</span>
                }
                </a>
-                }
                
-               @if (mhm.shm.Length > 0)
+               if(mmt.sub.Count > 0)
                {
                    <ul style="display: none;">
-                   @foreach (torsion.Models.Menus.SubHomeMenu mshm in mhm.shm)
+                   @foreach (torsion.Model.Menus.MenusTitle mshm in mmt.sub)
                    {                       
-                    <li><a href="#" frameurl="@mshm.url" onclick="seltab(this)" menuid=@mshm.id parid=@mhm.id>@mshm.name</a></li>
+                    <li><a href="#" frameurl="@mshm.url" onclick="seltab(this)" menuid=@mshm.id parid=@mshm.id>@mshm.name</a></li>
                    }
                    </ul>
-               }
-            </li>
+                }
+                </li>
             }
         </ul>
     </div>
@@ -82,7 +82,7 @@
         </div>
         <div id="breadcrumb">
    
-            <a href="#" onclick="selmenu(this)" class="current" menuid=@Model.hm[0].id><i class="icon-home"></i>@Model.hm[0].name</a> 
+            <a href="#" onclick="selmenu(this)" class="current" menuid=@Model.lpm[0].par.id><i class="icon-home"></i>@Model.lpm[0].par.name</a> 
 @*            <a href="#" onclick="seltab(2,1)" class="current">Dashboard x</a>*@
         </div>
         <div class="container-fluid">

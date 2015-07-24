@@ -26,3 +26,7 @@ F:\My Files\web\web\web\torsion\Model\bin\Debug\torsion.Model.pdb
 F:\My Files\web\web\web\torsion\Model\obj\Debug\torsion.Model.dll
 F:\My Files\web\web\web\torsion\Model\obj\Debug\torsion.Model.pdb
 F:\My Files\web\web\web\torsion\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+F:\My Files\web\web\torsion\Model\bin\Debug\torsion.Model.dll
+F:\My Files\web\web\torsion\Model\bin\Debug\torsion.Model.pdb
+F:\My Files\web\web\torsion\Model\obj\Debug\torsion.Model.dll
+F:\My Files\web\web\torsion\Model\obj\Debug\torsion.Model.pdb
