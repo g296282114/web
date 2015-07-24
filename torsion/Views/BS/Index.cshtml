@@ -1,4 +1,5 @@
-﻿@{
+﻿@model torsion.Models.Menus
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -18,9 +19,11 @@
     <script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script>
 </head>
 <body>
+@{
+    
+}
     <div id="header">
-        <h1>
-            <a href="dashboard.html">Unicorn Admin</a></h1>
+        <h1 onclick=""></h1>
     </div>
     <div id="user-nav" class="navbar navbar-inverse">
         <ul class="nav btn-group" style="width: auto; margin: 0px;">
@@ -42,42 +45,52 @@
         </ul>
     </div>
     <div id="sidebar">
-        <a href="#" class="visible-phone"><i class="icon icon-home"></i>Dashboard</a>
+        <a href="#" class="visible-phone"><i class="icon icon-th-list"></i>Menu</a>
         <ul style="display: block;">
-            <li class="active"><a href="javascript:seltab(1,0);"><i class="icon icon-home"></i>
-                <span>Dashboard</span></a></li>
-            <li class="submenu"><a href="javascript:seltab(2,0);"><i class="icon icon-th-list"></i><span>Form
-                elements</span> <span class="label">3</span></a>
-                <ul style="display: none;">
-                    <li><a href="javascript:seltab(2,1);">Common elements</a></li>
-                    <li><a href="javascript:seltab(2,2);">Validation</a></li>
-                    <li><a href="javascript:seltab(2,3);">Wizard</a></li>
-                </ul>
+        @{
+            string mainmenu = "active";
+            int parid = -1;
+        }
+            @foreach (torsion.Models.Menus.HomeMenu mhm in Model.hm)
+            {
+               <li class="@mainmenu"><a href="#" frameurl="@mhm.url" onclick="seltab(this)" menuid=@mhm.id parid=@parid>
+               @if (mainmenu != "submenu")
+               {
+                   mainmenu = "submenu";
+                   parid = 0;
+               } 
+               <i class="icon icon-th-list"></i>
+               <span>@mhm.name</span> 
+               @if (mhm.shm.Length > 0)
+               {
+                   <span class="label">@mhm.shm.Length</span>
+               }
+               </a>
+               @if (mhm.shm.Length > 0)
+               {
+                   <ul style="display: none;">
+                   @foreach (torsion.Models.Menus.SubHomeMenu mshm in mhm.shm)
+                   {                       
+                    <li><a href="#" frameurl="@mshm.url" onclick="seltab(this)" menuid=@mshm.id parid=@mhm.id>@mshm.name</a></li>
+                   }
+                   </ul>
+               }
             </li>
-            <li><a href="javascript:seltab(3,0);"><i class="icon icon-th-list"></i><span>Grid Layout</span></a></li>
-            <li class="submenu"><a href="javascript:seltab(4,0);"><i class="icon icon-file"></i><span>Sample
-                pages</span> <span class="label">4</span></a>
-                <ul>
-                    <li><a href="#" onclick="seltab(4,1)">Invoice</a></li>
-                    <li><a href="#" onclick="seltab(4,2)">Support chat</a></li>
-                    <li><a  href="javascript:seltab(4,3);">Calendar</a></li>
-                    <li><a href="javascript:seltab(4,4);">Gallery</a></li>
-                </ul>
-            </li>
-            
+            }
         </ul>
     </div>
     <div id="content">
         <div id="content-header">
         </div>
         <div id="breadcrumb">
-            <a href="index.html#" data-original-title="Go to Home"><i href="www.baidu.com" class="icon-remove">
-            </i>Close</a> <a href="index.html#" class="current">Dashboard x</a>
+   
+            <a href="#" onclick="selmenu(this)" class="current" menuid=@Model.hm[0].id><i class="icon-home"></i>@Model.hm[0].name</a> 
+@*            <a href="#" onclick="seltab(2,1)" class="current">Dashboard x</a>*@
         </div>
         <div class="container-fluid">
             <div class="row-fluid">
                 <div id="glftabs" class="easyui-tabs" data-options="tools:'#tab-tools'" style="width: 100%;">
-                    
+                   
                 </div>
                 <div id="footer" class="span12">
                     2012 © Unicorn Admin. Brought to you by <a href="https://wrapbootstrap.com/user/diablo9983">
@@ -89,69 +102,87 @@
     <ul class="typeahead dropdown-menu">
     </ul>
     <script type="text/javascript">
-     
-        function wresize() {
-            var ti = 130;
-            if ($(window).width() < 479) {
-                ti = 200;
+        $('#glftabs').tabs({
+            plain: true,
+            narrow: true,
+            // pill: true,
+            justified: true,
+            onBeforeClose: function (title, index) {
+                var target = this;
+                var opts = $(target).tabs('options');
+                opts.onBeforeClose = function () { }; //允许现在关闭
+                $(target).tabs('close', index);
+                return false;
             }
-
-            $('#glftabs').tabs({
-                height: $(window).height() - ti
-            });
         }
-        $(window).resize(wresize);
-        wresize();
-//        function iFrameHeight(idname) {
-//            alert($(window).height());
-//            return;
-//            var thisheight = $(document).height() + 30; //获取页面高度
-
-//            $("#" + idname).height(thisheight);
-//        }
-        function glf_newtab(mainmenu, submenu) {
-            var tid = "glftabs_" + mainmenu + '_' + submenu;
+        );
+        $("#breadcrumb").children("a:first").click();
+        function iFrameHeight(obj) {
+            var tid = $(obj).attr("name");
+            var thisheight = $(window.frames[tid].document).find("html").height(); //获取页面高度
+            $(obj).height(thisheight);
+            
+            //$(obj).attr("glf_hight", thisheight);
+        }
+        function glf_newtab(menuid,iframeurl) {
+            var tid = "glftabs_" + menuid;
             var ttid = "#" + tid;
-            var iframeurl;
-            switch (mainmenu) {
-                case 1:
-                    {
-                        iframeurl = "home";
-                        break;
-                    }
-                case 2:
-                    {
-                        iframeurl = "attendance/test"
-                    break;
-                }
-            case 3:
-                {
-
-                    iframeurl = "home/test"
-                    break;
-                }
-                    default:
-                    {
-                    iframeurl = "http://www.baidu.com"
-                    }
-            }
             $('#glftabs').tabs('add', {
-                title: 'glftabs_' + mainmenu + '_' + submenu,
-                content: '<iframe id=' + tid + '  scrolling=auto  frameborder="0" src="' + iframeurl + '" style="width: 100%;height:100%;margin-bottom : -10px;"></iframe>',
+                title: 'glftabs_' + menuid,
+                content: '<iframe id=' + tid + ' name =' + tid + ' onload="iFrameHeight(this)"  scrolling=auto   frameborder="0" src="' + iframeurl + '" style="width: 100%;"></iframe>',
                 closable: true,
                 selected: true
             });
-           $('#glftabs').tabs('getTab',tid).panel('options').tab.hide();
+            $('#glftabs').tabs('getTab', tid).panel('options').tab.hide();   
+          // $('#glftabs').tabs('getTab',tid).panel('options').tab.hide();
         }
 
-        function seltab(mainmenu, submenu) {
-            var tid = "glftabs_" + mainmenu + '_' + submenu;
+        function seltab(obj) {
+            var menuid = $(obj).attr("menuid");
+            var parid = $(obj).attr("parid");
+            if (parid == 0)
+                return;
+            var tid = "glftabs_" + menuid;
             if (!$('#glftabs').tabs('exists',tid)) {
-                glf_newtab(mainmenu,submenu);
+                glf_newtab(menuid, $(obj).attr("frameurl"));
             }
             else
                 $("#glftabs").tabs("select", tid);
+            //<a href="#" onclick="seltab(2,1)" class="current">Dashboard x</a>
+            chgbdcb(obj);
+//            var glftabs = $('#glftabs').tabs('tabs');
+//            for (var i = 0; i < glftabs.length; i++) {
+//                glftabs[i].panel('options').tab.hide();           
+//            }
+            
+        }
+        function chgbdcb(obj) {
+            var menuid = $(obj).attr("menuid");
+            var parid = $(obj).attr("parid");
+            $("#breadcrumb").children("a").removeClass("current");
+            $('#sidebar').find('li.active').removeClass('active');
+            if (parid < 0) {
+                $("#breadcrumb").children("a[menuid=" + menuid + "]").addClass("current");
+            }
 
+            if (parid > 0) {
+            var li = $('#sidebar').find("a[menuid=" + parid + "]").parent("li");
+                li.removeClass('open').addClass('active');
+                if (li.width() < 50)
+                    li.children("ul").css('display', 'none');
+            }
+                
+            else
+                $('#sidebar').find("a[menuid=" + menuid + "]").parent("li").addClass('active');
+            if (parid < 0) return;
+            $("#breadcrumb").children("a[menuid=" + menuid + "]").remove();
+            $("#breadcrumb").append('<a href="#" onclick="selmenu(this)" menuid=' + menuid + ' class="current">' + $(obj).text() + '</a>');
+            
+    
+
+        }
+        function selmenu(obj) {
+            $("#sidebar").find("a[menuid=" + $(obj).attr("menuid") + "]").click();
         }
     </script>
 </body>
