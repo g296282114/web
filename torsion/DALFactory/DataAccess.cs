@@ -95,7 +95,12 @@ namespace torsion.DALFactory
             object objType = CreateObject(AssemblyPath, ClassNamespace);
             return (torsion.IDAL.IDeviceInfo)objType;
         }
-        
+        public static torsion.IDAL.IMenus CreateMenus()
+        {
+            string ClassNamespace = AssemblyPath + ".Menus";
+            object objType = CreateObject(AssemblyPath, ClassNamespace);
+            return (torsion.IDAL.IMenus)objType;
+        }
 
 }
 }

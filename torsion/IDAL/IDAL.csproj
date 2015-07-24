@@ -124,6 +124,7 @@
     <Compile Include="IAttendance.cs" />
     <Compile Include="IAttendanceSet.cs" />
     <Compile Include="IDeviceInfo.cs" />
+    <Compile Include="IMenus.cs" />
     <Compile Include="ISoftInfo.cs" />
     <Compile Include="IWeChat.cs" />
   </ItemGroup>

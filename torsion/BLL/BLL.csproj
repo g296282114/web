@@ -129,6 +129,7 @@
     <Compile Include="AttendanceSet.cs" />
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="GlfGloFun.cs" />
+    <Compile Include="Menus.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

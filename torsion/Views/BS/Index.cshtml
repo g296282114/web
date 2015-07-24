@@ -1,4 +1,4 @@
-﻿@model torsion.Models.Menus
+﻿@model torsion.Model.Menus
 @{
     Layout = null;
 }
@@ -45,27 +45,25 @@
         </ul>
     </div>
     <div id="sidebar">
-        <a href="#" class="visible-phone"><i class="icon icon-th-list"></i>Menu</a>
+        <a href="#" class="visible-phone"><i class="icon icon-th-list"></i>Menus</a>
         <ul style="display: block;">
         @{
-            string mainmenu = "active";
-            int parid = -1;
-        }
-            @foreach (torsion.Models.Menus.HomeMenu mhm in Model.hm)
+            string tsr = "<li class='active'>";
+        } 
+            @foreach (torsion.Model.Menus.MenusTitle mmt in Model.mt)
             {
-               <li class="@mainmenu"><a href="#" frameurl="@mhm.url" onclick="seltab(this)" menuid=@mhm.id parid=@parid>
-               @if (mainmenu != "submenu")
+                if (mmt.parid <= 0)
+                {
+                    <a href="#" frameurl="@mmt.url" onclick="seltab(this)" menuid=@mmt.id parid=@mmt.parid>
+               <i class="icon @mmt.ico"></i>
+               <span>@mmt.name</span> 
+               @if (@mmt.subnum > 0)
                {
-                   mainmenu = "submenu";
-                   parid = 0;
-               } 
-               <i class="icon icon-th-list"></i>
-               <span>@mhm.name</span> 
-               @if (mhm.shm.Length > 0)
-               {
-                   <span class="label">@mhm.shm.Length</span>
+                   <span class="label">@mmt.subnum</span>
                }
                </a>
+                }
+               
                @if (mhm.shm.Length > 0)
                {
                    <ul style="display: none;">

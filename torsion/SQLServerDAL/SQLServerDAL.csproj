@@ -142,6 +142,7 @@
     <Compile Include="Attendance.cs" />
     <Compile Include="AttendanceSet.cs" />
     <Compile Include="DeviceInfo.cs" />
+    <Compile Include="Menus.cs" />
     <Compile Include="SoftInfo.cs" />
     <Compile Include="WeChat.cs" />
   </ItemGroup>
