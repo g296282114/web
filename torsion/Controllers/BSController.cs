@@ -62,11 +62,11 @@ namespace torsion.Controllers
             //}
 
 
-            return View(mm);
+            return View(Content("index"));
         }
         public ActionResult Test()
         {
-            return View();
+            return View(Content("test"));
         }
     }
 }
