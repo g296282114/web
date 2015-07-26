@@ -707,13 +707,10 @@
     <Content Include="Views\Attendance\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\BS\Index1.cshtml" />
+    <Content Include="Views\BS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\BS\test.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\BS\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
