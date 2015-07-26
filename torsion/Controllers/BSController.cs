@@ -62,7 +62,7 @@ namespace torsion.Controllers
             //}
 
 
-            return Content(mm.lpm.Count.ToString());
+            return View(mm);
         }
         public ActionResult Test()
         {
