@@ -121,3 +121,21 @@ F:\My Files\web\web\torsion\BLL\bin\Debug\torsion.DBUtility.pdb
 F:\My Files\web\web\torsion\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 F:\My Files\web\web\torsion\BLL\obj\Debug\torsion.BLL.dll
 F:\My Files\web\web\torsion\BLL\obj\Debug\torsion.BLL.pdb
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.BLL.dll.config
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.BLL.dll
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.BLL.pdb
+E:\GitHub\web\torsion\BLL\bin\Debug\CodematicDemo.IDAL.dll
+E:\GitHub\web\torsion\BLL\bin\Debug\Newtonsoft.Json.dll
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.DALFactory.dll
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.Model.dll
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.SQLServerDAL.dll
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.DBUtility.dll
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.DALFactory.pdb
+E:\GitHub\web\torsion\BLL\bin\Debug\CodematicDemo.IDAL.pdb
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.Model.pdb
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.SQLServerDAL.pdb
+E:\GitHub\web\torsion\BLL\bin\Debug\Newtonsoft.Json.xml
+E:\GitHub\web\torsion\BLL\bin\Debug\torsion.DBUtility.pdb
+E:\GitHub\web\torsion\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+E:\GitHub\web\torsion\BLL\obj\Debug\torsion.BLL.dll
+E:\GitHub\web\torsion\BLL\obj\Debug\torsion.BLL.pdb

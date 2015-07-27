@@ -30,3 +30,7 @@ F:\My Files\web\web\torsion\Model\bin\Debug\torsion.Model.dll
 F:\My Files\web\web\torsion\Model\bin\Debug\torsion.Model.pdb
 F:\My Files\web\web\torsion\Model\obj\Debug\torsion.Model.dll
 F:\My Files\web\web\torsion\Model\obj\Debug\torsion.Model.pdb
+E:\GitHub\web\torsion\Model\bin\Debug\torsion.Model.dll
+E:\GitHub\web\torsion\Model\bin\Debug\torsion.Model.pdb
+E:\GitHub\web\torsion\Model\obj\Debug\torsion.Model.dll
+E:\GitHub\web\torsion\Model\obj\Debug\torsion.Model.pdb

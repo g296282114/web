@@ -61,3 +61,15 @@ F:\My Files\web\web\torsion\DBUtility\bin\Debug\torsion.Model.pdb
 F:\My Files\web\web\torsion\DBUtility\obj\Debug\DBUtility.csprojResolveAssemblyReference.cache
 F:\My Files\web\web\torsion\DBUtility\obj\Debug\torsion.DBUtility.dll
 F:\My Files\web\web\torsion\DBUtility\obj\Debug\torsion.DBUtility.pdb
+E:\GitHub\web\torsion\DBUtility\bin\Debug\torsion.DBUtility.dll.config
+E:\GitHub\web\torsion\DBUtility\bin\Debug\torsion.DBUtility.dll
+E:\GitHub\web\torsion\DBUtility\bin\Debug\torsion.DBUtility.pdb
+E:\GitHub\web\torsion\DBUtility\bin\Debug\torsion.DALFactory.dll
+E:\GitHub\web\torsion\DBUtility\bin\Debug\CodematicDemo.IDAL.dll
+E:\GitHub\web\torsion\DBUtility\bin\Debug\torsion.Model.dll
+E:\GitHub\web\torsion\DBUtility\bin\Debug\torsion.DALFactory.pdb
+E:\GitHub\web\torsion\DBUtility\bin\Debug\CodematicDemo.IDAL.pdb
+E:\GitHub\web\torsion\DBUtility\bin\Debug\torsion.Model.pdb
+E:\GitHub\web\torsion\DBUtility\obj\Debug\DBUtility.csprojResolveAssemblyReference.cache
+E:\GitHub\web\torsion\DBUtility\obj\Debug\torsion.DBUtility.dll
+E:\GitHub\web\torsion\DBUtility\obj\Debug\torsion.DBUtility.pdb
