@@ -24,6 +24,33 @@ namespace torsion.Model
             }
             return str;
         }
+        public static string DataSetToJson(DataSet ds)
+        {
+            System.Text.StringBuilder str = new System.Text.StringBuilder("[");
+            for (int o = 0; o < ds.Tables.Count; o++)
+            {
+                str.Append("{");
+                str.Append(string.Format("\"{0}\":[", ds.Tables[o].TableName));
+
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    str.Append("{");
+                    for (int j = 0; j < ds.Tables[0].Columns.Count; j++)
+                    {
+                        str.Append(string.Format("\"{0}\":\"{1}\",", ds.Tables[0].Columns[j].ColumnName, ds.Tables[0].Rows[i][j].ToString()));
+                    }
+                    str.Remove(str.Length - 1, 1);
+                    str.Append("},");
+                }
+                str.Remove(str.Length - 1, 1);
+                str.Append("]},");
+            }
+            str.Remove(str.Length - 1, 1);
+            str.Append("]");
+            return str.ToString();
+        }
+
+
         public static int get_DataRow(DataTable dt, int rn, object drai)
         {
             try

@@ -140,6 +140,7 @@
             var menuid = $(obj).attr("menuid");
             var parid = $(obj).attr("parid");
             if (parid == 0)
+                if ($(obj).find("span.label").length > 0)
                 return;
             var tid = "glftabs_" + menuid;
             if (!$('#glftabs').tabs('exists',tid)) {
@@ -160,9 +161,9 @@
             var parid = $(obj).attr("parid");
             $("#breadcrumb").children("a").removeClass("current");
             $('#sidebar').find('li.active').removeClass('active');
-            if (parid < 0) {
-                $("#breadcrumb").children("a[menuid=" + menuid + "]").addClass("current");
-            }
+//            if (parid < 0) {
+//                $("#breadcrumb").children("a[menuid=" + menuid + "]").addClass("current");
+//            }
 
             if (parid > 0) {
             var li = $('#sidebar').find("a[menuid=" + parid + "]").parent("li");
@@ -173,7 +174,7 @@
                 
             else
                 $('#sidebar').find("a[menuid=" + menuid + "]").parent("li").addClass('active');
-            if (parid < 0) return;
+//            if (parid < 0) return;
             $("#breadcrumb").children("a[menuid=" + menuid + "]").remove();
             $("#breadcrumb").append('<a href="#" onclick="selmenu(this)" menuid=' + menuid + ' class="current">' + $(obj).text() + '</a>');
             

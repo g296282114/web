@@ -1,0 +1,81 @@
+﻿
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="UTF-8" />
+    <title>test</title>
+	<link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css">
+	<link rel="stylesheet" type="text/css" href="~/Content/themes/icon.css">
+	<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script> 
+</head>
+<body style="height:1000px">
+<div id="glftabs" class="easyui-tabs" data-options="tools:'#tab-tools'" style="width: 100%;">
+                   <div title="AttendanceInfo" style="padding:10px">
+                   <table class="easyui-datagrid" title="Basic DataGrid" style="width:100%" data-options="singleSelect:true,url:'/bs/AttendanceInfoDS',method:'get'""> 
+            <thead>
+            <tr>
+                <th data-options="field:'Logid',align:'center',width:100" >Logid</th>
+                <th data-options="field:'Userid',width:100" >Userid</th>
+                <th data-options="field:'CheckTime',width:100" >CheckTime</th>
+                <th data-options="field:'Sensorid',width:100"  >Sensorid</th>
+                <th data-options="field:'AttFlag',width:100" >AttFlag</th>
+                <th data-options="field:'OpenDoorFlag',width:100" >OpenDoorFlag</th>
+                <th data-options="field:'Suggest',width:100" >Suggest</th>
+
+            </tr>
+        </thead>
+ </table>
+ </div>
+ <div title="ClassesInfo" style="padding:10px">
+               <table class="easyui-datagrid" title="Basic DataGrid" style="width:100%" data-options="singleSelect:true,url:'/bs/ClassesInfoDS',method:'get'"" > 
+            <thead>
+            <tr>
+                <th data-options="field:'Userid',align:'center'"  width="100">Userid</th>
+                <th data-options="field:'ClassesDate'"  width="100">ClassesDate</th>
+                <th data-options="field:'ClassesName'" width="100">ClassesName</th>
+                <th data-options="field:'StartWork'"  width="100">StartWork</th>
+                <th data-options="field:'EndWork'"  width="100">EndWork</th>
+                <th data-options="field:'InsWork'"  width="100">InsWork</th>
+                <th data-options="field:'OutWork'" width="100" >OutWork</th>
+                 <th data-options="field:'Work'" width="100" >Work</th>
+                  <th data-options="field:'Late'" width="100" >Late</th>
+                   <th data-options="field:'Early'" width="100" >Early</th>
+                    <th data-options="field:'Absent'" width="100" >Absent</th>
+                    <th data-options="field:'OverTime'" width="100" >OverTime</th>
+                    <th data-options="field:'Absent'" width="100" >Absent</th>
+                    <th data-options="field:'WorkTime'" width="100" >WorkTime</th>
+                    <th data-options="field:'RealTime'" width="100" >RealTime</th>
+
+
+            </tr>
+        </thead>
+ </table>
+                   </div>
+
+        
+                   <div title="ResultInfo" style="padding:10px">
+              <table class="easyui-datagrid" title="Basic DataGrid" style="width:100%" data-options="singleSelect:true,url:'/bs/ResultInfoDS',method:'get'"" > 
+            <thead>
+            <tr>
+                <th data-options="field:'Userid',align:'center'"  width="100">Userid</th>
+                <th data-options="field:'Work'"  width="100">Work</th>
+                <th data-options="field:'Late'"  width="100">Late</th>
+                <th data-options="field:'Early'"  width="100">Early</th>
+                <th data-options="field:'Absent'"  width="100">Absent</th>
+                <th data-options="field:'OverTime'"  width="100">OverTime</th>
+                <th data-options="field:'ShouldWork'"  width="100">ShouldWork</th>
+                <th data-options="field:'RealTime'"  width="100">RealTime</th>
+                <th data-options="field:'Work'"  width="100">Work</th>
+                <th data-options="field:'WorkTime'" width="100">WorkTime</th>
+            </tr>
+        </thead>
+ </table>
+                   </div>
+
+                </div>
+</body>
+</html>
+

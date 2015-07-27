@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
 
 namespace torsion.Controllers
 {
@@ -67,6 +68,68 @@ namespace torsion.Controllers
         public ActionResult Test()
         {
             return Content("test");
+        }
+
+        public ActionResult Attendance()
+        {
+           
+            return View();     
+
+        }
+        public string AttendanceInfoDS()
+        {
+            DataTable dc = getAttendance().Tables["DRAttendanceInfo"];
+            torsion.Models.EasyUi.DataGridJson.AttendanceInfo tai = new Models.EasyUi.DataGridJson.AttendanceInfo();
+            tai.total = dc.Rows.Count;
+            tai.rows = new Model.AttendanceSet.DatasetStat.DRAttendanceInfo[dc.Rows.Count];
+            for (int i = 0; i < dc.Rows.Count; i++)
+            {
+                tai.rows[i] = new Model.AttendanceSet.DatasetStat.DRAttendanceInfo();
+                torsion.Model.GlfGloFun.get_DataRow(dc, i, tai.rows[i]);
+            }
+            return Newtonsoft.Json.JsonConvert.SerializeObject(tai);  
+        }
+        public string ClassesInfoDS()
+        {
+            DataTable dc = getAttendance().Tables["DRClassesInfo"];
+            torsion.Models.EasyUi.DataGridJson.ClassesInfo tci = new Models.EasyUi.DataGridJson.ClassesInfo();
+            tci.total = dc.Rows.Count;
+            tci.rows = new Model.AttendanceSet.DatasetStat.DRClassesInfo[dc.Rows.Count];
+            for (int i = 0; i < dc.Rows.Count; i++)
+            {
+                tci.rows[i] = new Model.AttendanceSet.DatasetStat.DRClassesInfo();
+                torsion.Model.GlfGloFun.get_DataRow(dc, i, tci.rows[i]);
+            }
+            return Newtonsoft.Json.JsonConvert.SerializeObject(tci); 
+        }
+        public string ResultInfoDS()
+        {
+            DataTable dc = getAttendance().Tables["DRResultInfo"];
+            torsion.Models.EasyUi.DataGridJson.ResultInfo tri = new Models.EasyUi.DataGridJson.ResultInfo();
+            tri.total = dc.Rows.Count;
+            tri.rows = new Model.AttendanceSet.DatasetStat.DRResultInfo[dc.Rows.Count];
+            for (int i = 0; i < dc.Rows.Count; i++)
+            {
+                tri.rows[i] = new Model.AttendanceSet.DatasetStat.DRResultInfo();
+                torsion.Model.GlfGloFun.get_DataRow(dc, i, tri.rows[i]);
+            }
+            return Newtonsoft.Json.JsonConvert.SerializeObject(tri); 
+        }
+
+        private DataSet getAttendance(Boolean init = false)
+        {
+            if (Session["AttendanceDS"] == null || init == true)
+            {
+                torsion.BLL.AttendanceSet webll = new torsion.BLL.AttendanceSet();
+                DataSet ds = new DataSet();
+                int[] sid = new int[1];
+                sid[0] = 0;
+                Models.AttendanceDataSet ads = new Models.AttendanceDataSet();
+
+                webll.get_StatDataSet(ds, sid, DateTime.Now.AddMonths(-2), DateTime.Now);
+                Session["AttendanceDS"] = ds;
+            }
+            return Session["AttendanceDS"] as DataSet;
         }
     }
 }

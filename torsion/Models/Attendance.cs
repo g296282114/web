@@ -7,7 +7,13 @@ namespace torsion.Models
 {
     public class Attendance
     {
-        
+
+    }
+    public class AttendanceDataSet
+    {
+        torsion.Model.AttendanceSet.DatasetStat.DRAttendanceInfo[] drai;
+        torsion.Model.AttendanceSet.DatasetStat.DRClassesInfo[] drci;
+        torsion.Model.AttendanceSet.DatasetStat.DRResultInfo[] drri;
     }
     public class AttdanceJson
     {
