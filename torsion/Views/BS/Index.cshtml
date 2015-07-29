@@ -118,10 +118,11 @@
         );
 
         function iFrameHeight(obj) {
-            return;
-            var tid = $(obj).attr("name");
-            var thisheight = $(window.frames[tid].document).find("html").height(); //获取页面高度
-            $(obj).height(thisheight);
+   
+            //var tid = $(obj).attr("name");
+           // var thisheight = $(window.frames[tid].document).find("html").height(); //获取页面高度
+           // $(obj).height($("#glftabs").height()-30);
+           // $(window.frames[tid].document).find("html").height($("glftabs").height());
             
             //$(obj).attr("glf_hight", thisheight);
         }
@@ -130,7 +131,7 @@
             var ttid = "#" + tid;
             $('#glftabs').tabs('add', {
                 title:tid,
-                content: '<iframe id=' + tid + ' name =' + tid + ' onload="iFrameHeight(this)"  scrolling=auto   frameborder="0" src="' + iframeurl + '" style="width: 100%"></iframe>',
+                content: '<iframe id=' + tid + ' name =' + tid + ' onload="iFrameHeight(this)"  scrolling=auto   frameborder="0" src="' + iframeurl + '" style="width: 100%;height:95%"></iframe>',
                 closable: true,
                 selected: true
             });
@@ -190,7 +191,7 @@
             var title = $("#glftabs").tabs('getSelected').panel('options').title;
             $("#" + title).attr("src", $("#" + title).attr("src"));
         }
-        function glf_height() {
+        function glf_height(){
             var tmp = $(window).height();
             if ($(window).width() > 479) {
                 tmp -= 60;
@@ -202,9 +203,10 @@
             tmp -= $("#footer").height();
             $("#glftabs").css({ height: tmp })
         }
+        glf_height();
         $(window).resize(glf_height);
         $("#breadcrumb").children("a:first").click();
-
+        
     </script>
 </body>
 </html>
