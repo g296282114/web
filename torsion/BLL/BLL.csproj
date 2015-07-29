@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="Admin.cs" />
     <Compile Include="SoftInfo.cs" />
+    <Compile Include="UserInfo.cs" />
     <Compile Include="WeChat.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -101,6 +101,14 @@ namespace torsion.DALFactory
             object objType = CreateObject(AssemblyPath, ClassNamespace);
             return (torsion.IDAL.IMenus)objType;
         }
+        public static torsion.IDAL.IUserInfo CreateUserInfo()
+        {
+            string ClassNamespace = AssemblyPath + ".UserInfo";
+            object objType = CreateObject(AssemblyPath, ClassNamespace);
+            return (torsion.IDAL.IUserInfo)objType;
+        }
+
+        
 
 }
 }

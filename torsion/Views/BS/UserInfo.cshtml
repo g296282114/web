@@ -1,24 +1,29 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
-<html style="height:1000px">
-
-<head >
-    <meta name="viewport" content="width=device-width" charset="UTF-8" />
-    <title>test</title>
-	<link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/themes/icon.css">
+<!DOCTYPE html>
+<html style="height:600px">
+<head>
+    <title>Unicorn Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css"/>
+	<link rel="stylesheet" type="text/css" href="~/Content/themes/icon.css"/>
 	<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
 	<script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script> 
 </head>
-<body >
+<body>
 <table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width:100%" > 
             <thead>
             <tr>
-                <th data-options="field:'name',align:'center',width:100" >name</th>
-                <th data-options="field:'sensorid',width:100" >sensorid</th>
-                <th data-options="field:'usercode',width:100" >usercode</th>
-                <th data-options="field:'checktime',width:200" >checktime</th>
+                <th data-options="field:'id',align:'center',width:100" >id</th>
+                <th data-options="field:'UserCode',width:100" >UserCode</th>
+                <th data-options="field:'Name',width:100" >Name</th>
+                <th data-options="field:'Pwd',width:200" >Pwd</th>
+                <th data-options="field:'Deptid',width:200" >Deptid</th>
+                <th data-options="field:'Groupid',width:200" >Groupid</th>
+                <th data-options="field:'UserType',width:200" >UserType</th>
+                <th data-options="field:'CompareType',width:200" >CompareType</th>
             </tr>
         </thead>
  </table>
@@ -41,7 +46,7 @@
      $(function () {
 
          $('#dg').datagrid({
-             title: 'Attendance',
+             title: 'UserInfo',
              iconCls: 'icon-edit', //图标 
              //   width: 700, 
              height: 'auto',
@@ -53,13 +58,14 @@
              method: "get",
              collapsible: true, //是否可折叠的 
              fit: true, //自动大小 
-             url: '../Attendance/GetData',
+             url: '../bs/userinfojson',
              //sortName: 'code', 
              //sortOrder: 'desc', 
              remoteSort: false,
              idField: 'fldId',
              singleSelect: true, //是否单选 
              rownumbers: true//行号 
+
 
          });
 
@@ -86,7 +92,7 @@
 
      function progress() {
          $('#dg').datagrid({
-             url: '../Attendance/GetData',
+             url: '../bs/userinfojson',
              queryParams: {
                  name: $("#name").textbox('getValue'),
                  start: $("#from").datebox('getValue'),
@@ -97,5 +103,4 @@
 
     </script>
 </body>
-
 </html>

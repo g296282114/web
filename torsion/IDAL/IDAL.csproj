@@ -126,6 +126,7 @@
     <Compile Include="IDeviceInfo.cs" />
     <Compile Include="IMenus.cs" />
     <Compile Include="ISoftInfo.cs" />
+    <Compile Include="IUserInfo.cs" />
     <Compile Include="IWeChat.cs" />
   </ItemGroup>
   <ItemGroup>

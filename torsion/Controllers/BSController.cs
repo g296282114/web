@@ -11,9 +11,20 @@ namespace torsion.Controllers
     {
         //
         // GET: /BS/
-        BLL.Menus webll = new BLL.Menus();
+
+
+        public ActionResult Home()
+        {
+      //  http://xue.youdao.com/w?method=tinyEngData&date=2015-07-26
+            string ret = string.Empty;
+
+           ret =  GlobalController.Get_Get_String("http://xue.youdao.com/w?method=tinyEngData&date=2015-07-26");
+            return Content(ret);
+        }
+
         public ActionResult Index()
         {
+            BLL.Menus webll = new BLL.Menus();
             torsion.Model.Menus mm = new Model.Menus();
             webll.get_Menus(mm);
 
@@ -68,6 +79,24 @@ namespace torsion.Controllers
         public ActionResult Test()
         {
             return Content("test");
+        }
+
+        public ActionResult UserInfo()
+        {
+            return View();
+        }
+
+        public string UserInfoJson()
+        {
+            BLL.UserInfo webll = new BLL.UserInfo();
+            DataSet ds = webll.get_UserInfo();
+            torsion.Model.UserInfo.BaseInfo[] uibi = new Model.UserInfo.BaseInfo[ds.Tables[0].Rows.Count];
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                uibi[i] = new Model.UserInfo.BaseInfo();
+                torsion.Model.GlfGloFun.get_DataRow(ds.Tables[0], i, uibi[i]);
+            }
+            return Newtonsoft.Json.JsonConvert.SerializeObject(uibi);  
         }
 
         public ActionResult Attendance()
@@ -126,7 +155,7 @@ namespace torsion.Controllers
                 sid[0] = 0;
                 Models.AttendanceDataSet ads = new Models.AttendanceDataSet();
 
-                webll.get_StatDataSet(ds, sid, DateTime.Now.AddMonths(-2), DateTime.Now);
+                webll.get_StatDataSet(ds, sid, DateTime.Now.AddMonths(-4), DateTime.Now);
                 Session["AttendanceDS"] = ds;
             }
             return Session["AttendanceDS"] as DataSet;

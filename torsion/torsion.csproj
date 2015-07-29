@@ -834,6 +834,12 @@
   <ItemGroup>
     <Content Include="Views\BS\Attendance.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BS\Home.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\BS\UserInfo.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -133,6 +133,7 @@
     <Compile Include="Menus.cs" />
     <Compile Include="SoftInfo.cs" />
     <Compile Include="StaffInfo.cs" />
+    <Compile Include="UserInfo.cs" />
     <Compile Include="WeChat.cs" />
   </ItemGroup>
   <ItemGroup>

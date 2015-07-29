@@ -27,8 +27,8 @@
     </div>
     <div id="user-nav" class="navbar navbar-inverse">
         <ul class="nav btn-group" style="width: auto; margin: 0px;">
-            <li class="btn btn-inverse"><a title="" onclick="iFrameHeight('bb')"><i class="icon icon-user">
-            </i><span class="text">Profile</span></a></li>
+            <li class="btn btn-inverse"><a title="" onclick="glf_refresh()"><i class="icon icon-refresh">
+            </i><span class="text">Refresh</span></a></li>
             <li class="btn btn-inverse dropdown" id="menu-messages"><a href="index.html#" data-toggle="dropdown"
                 data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope">
                 </i><span class="text">Messages</span> <span class="label label-important">5</span>
@@ -40,7 +40,7 @@
                     <li><a class="sTrash" title="" href="index.html#">trash</a></li>
                 </ul>
             </li>
-            <li class="btn btn-inverse"><a title="" href="index.html#"><i class="icon icon-cog">
+            <li class="btn btn-inverse"><a title="" onclick="glf_height()"><i class="icon icon-cog">
             </i><span class="text">Settings</span></a></li>
         </ul>
     </div>
@@ -91,10 +91,10 @@
                 <div id="glftabs" class="easyui-tabs" data-options="tools:'#tab-tools'" style="width: 100%;">
                    
                 </div>
-                <div id="footer" class="span12">
-                    2012 © Unicorn Admin. Brought to you by <a href="https://wrapbootstrap.com/user/diablo9983">
-                        diablo9983</a>
-                </div>
+                @*<div id="footer" class="span12">
+                    2012 © Unicorn Admin <a href="https://wrapbootstrap.com/user/diablo9983">
+                        anviz</a>
+                </div>*@
             </div>
         </div>
     </div>
@@ -105,6 +105,7 @@
             plain: true,
             narrow: true,
             // pill: true,
+            fit:true,
             justified: true,
             onBeforeClose: function (title, index) {
                 var target = this;
@@ -115,8 +116,9 @@
             }
         }
         );
-        $("#breadcrumb").children("a:first").click();
+
         function iFrameHeight(obj) {
+            return;
             var tid = $(obj).attr("name");
             var thisheight = $(window.frames[tid].document).find("html").height(); //获取页面高度
             $(obj).height(thisheight);
@@ -127,8 +129,8 @@
             var tid = "glftabs_" + menuid;
             var ttid = "#" + tid;
             $('#glftabs').tabs('add', {
-                title: 'glftabs_' + menuid,
-                content: '<iframe id=' + tid + ' name =' + tid + ' onload="iFrameHeight(this)"  scrolling=auto   frameborder="0" src="' + iframeurl + '" style="width: 100%;"></iframe>',
+                title:tid,
+                content: '<iframe id=' + tid + ' name =' + tid + ' onload="iFrameHeight(this)"  scrolling=auto   frameborder="0" src="' + iframeurl + '" style="width: 100%"></iframe>',
                 closable: true,
                 selected: true
             });
@@ -184,6 +186,25 @@
         function selmenu(obj) {
             $("#sidebar").find("a[menuid=" + $(obj).attr("menuid") + "]").click();
         }
+        function glf_refresh() {
+            var title = $("#glftabs").tabs('getSelected').panel('options').title;
+            $("#" + title).attr("src", $("#" + title).attr("src"));
+        }
+        function glf_height() {
+            var tmp = $(window).height();
+            if ($(window).width() > 479) {
+                tmp -= 60;
+            }
+            else {
+                tmp -= 125;
+            }
+            tmp -= $("#breadcrumb").height();
+            tmp -= $("#footer").height();
+            $("#glftabs").css({ height: tmp })
+        }
+        $(window).resize(glf_height);
+        $("#breadcrumb").children("a:first").click();
+
     </script>
 </body>
 </html>
