@@ -8,6 +8,6 @@ namespace torsion.IDAL
 {
     public interface IUserInfo
     {
-        DataSet get_UserInfo();
+        DataSet get_UserInfo(string search,int deptid);
     }
 }

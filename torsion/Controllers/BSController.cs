@@ -21,7 +21,60 @@ namespace torsion.Controllers
            ret =  GlobalController.Get_Get_String("http://xue.youdao.com/w?method=tinyEngData&date=2015-07-26");
             return Content(ret);
         }
+        public ActionResult BIndex()
+        {
+            BLL.Menus webll = new BLL.Menus();
+            torsion.Model.Menus mm = new Model.Menus();
+            webll.get_Menus(mm);
 
+            //int ti = 0;
+            //string[] tsr = new string[] { "home", "home1", "attendance/test", "attendance/test", "home/test", "home/test", "home/test", "home1", "attendance/test", "attendance/test", "home/test", "home/test", "home/test", "home1", "attendance/test", "attendance/test", "home/test", "home/test", "home/test", "home1", "attendance/test", "attendance/test", "home/test", "home/test", "home/test", "home1", "attendance/test", "attendance/test", "home/test", "home/test", "home/test" };
+
+            //int mn = 4;
+            //Models.Menus mm = new Models.Menus();
+            //mm.hm = new Models.Menus.HomeMenu[4];
+            //mm.hm[0] = new Models.Menus.HomeMenu();
+            //mm.hm[0].id = i;
+            //mm.hm[0].name = "Menu" + i;
+            //mm.hm[0].url = tsr[ti++];
+            //mm.hm[0].ico = "icon-user";
+            //mm.hm[0].shm = new Models.Menus.SubHomeMenu[i];
+
+            //for (int i = 0; i < mn; i++)
+            //{
+            //    mm.hm[i] = new Models.Menus.HomeMenu();
+            //    mm.hm[i].id = i;
+            //    mm.hm[i].name = "Menu" + i;
+            //    mm.hm[i].url = tsr[ti++];
+            //    switch(i)
+            //    {
+            //        case 1:
+            //            mm.hm[i].ico = "icon-user";
+            //            break;
+            //        case 2:
+            //            mm.hm[i].ico = "icon-download-alt";
+            //            break;
+            //        case 3:
+            //            mm.hm[i].ico = "icon-signal";
+            //            break;
+            //        default:
+            //            mm.hm[i].ico = "icon-camera";
+            //            break;
+            //    }
+            //    mm.hm[i].shm = new Models.Menus.SubHomeMenu[i];
+            //    for (int j = 0; j < i; j++)
+            //    {
+            //        mm.hm[i].shm[j] = new Models.Menus.SubHomeMenu();
+            //        mm.hm[i].shm[j].id = i*100+j;
+            //        mm.hm[i].shm[j].name = "Sub" + mm.hm[i].shm[j].id;
+            //        mm.hm[i].shm[j].url = tsr[ti++];
+
+            //    }
+            //}
+
+
+            return View(mm);
+        }
         public ActionResult Index()
         {
             BLL.Menus webll = new BLL.Menus();
@@ -76,6 +129,10 @@ namespace torsion.Controllers
 
             return View(mm);
         }
+        public ActionResult Loading()
+        {
+            return View();
+        }
         public ActionResult Test()
         {
             return Content("test");
@@ -89,7 +146,14 @@ namespace torsion.Controllers
         public string UserInfoJson()
         {
             BLL.UserInfo webll = new BLL.UserInfo();
-            DataSet ds = webll.get_UserInfo();
+            string search="";
+            int deptid=0;
+            if (Request.QueryString["search"] != null)
+                search = Request.QueryString["search"];
+            if (Request.QueryString["deptid"] != null)
+                deptid = int.Parse(Request.QueryString["deptid"]);
+
+            DataSet ds = webll.get_UserInfo(search,deptid);
             torsion.Model.UserInfo.BaseInfo[] uibi = new Model.UserInfo.BaseInfo[ds.Tables[0].Rows.Count];
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {

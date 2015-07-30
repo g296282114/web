@@ -37,7 +37,7 @@
                     <li><a class="sTrash" title="" href="index.html#">trash</a></li>
                 </ul>
             </li>
-            <li class="btn btn-inverse"><a title="" onclick="glf_test()"><i class="icon icon-cog">
+            <li class="btn btn-inverse"><a title="" onclick="glf_height()"><i class="icon icon-cog">
             </i><span class="text">Settings</span></a></li>
         </ul>
     </div>
@@ -67,7 +67,7 @@
                    <ul style="display: none;">
                    @foreach (torsion.Model.Menus.MenusTitle mshm in mmt.sub)
                    {                       
-                    <li><a href="#" frameurl="@mshm.url" onclick="seltab(this)" menuid=@mshm.id parid=@mshm.parid>@mshm.name</a></li>
+                    <li><a href="#" frameurl="@mshm.url" onclick="seltab(this)" menuid=@mshm.id parid=@mshm.id>@mshm.name</a></li>
                    }
                    </ul>
                 }
@@ -83,42 +83,49 @@
             <a href="#" onclick="selmenu(this)" class="current" menuid=@Model.lpm[0].par.id><i class="icon-home"></i>@Model.lpm[0].par.name</a> 
 @*            <a href="#" onclick="seltab(2,1)" class="current">Dashboard x</a>*@
         </div>
-        <div id="glf_tabs" class="container-fluid">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div id="glftabs" class="easyui-tabs" data-options="tools:'#tab-tools'" style="width: 100%;">
+                   
+                </div>
+                @*<div id="footer" class="span12">
+                    2012 © Unicorn Admin <a href="https://wrapbootstrap.com/user/diablo9983">
+                        anviz</a>
+                </div>*@
+            </div>
         </div>
     </div>
     <ul class="typeahead dropdown-menu">
     </ul>
     <script type="text/javascript">
-
-        var curtab = 0;
-        function glf_test() {
-            
-            $("#glftabs_1").panel("close");
+        $('#glftabs').tabs({
+            plain: true,
+            narrow: true,
+            // pill: true,
+            fit:true,
+            justified: true,
+            onBeforeClose: function (title, index) {
+                var target = this;
+                var opts = $(target).tabs('options');
+                opts.onBeforeClose = function () { }; //允许现在关闭
+                $(target).tabs('close', index);
+                return false;
+            }
         }
-        function glf_newtab(menuid, iframeurl,titlename) {
+        );
+
+ 
+        function glf_newtab(menuid,iframeurl) {
             var tid = "glftabs_" + menuid;
-            var tstr = '<div id="'+tid+'" >';
-            tstr += '<iframe  name =' + tid + ' "  scrolling=auto   frameborder="0" src="' + iframeurl + '" style="width: 100%;height:99%"></iframe>';
-            tstr += '</div>';
-            $("#glf_tabs").append(tstr);
-            $("#" + tid).panel({
-
-                title: titlename,
-                tools: [
-            { iconCls: 'pagination-load',
-                handler: function () {
-                    glf_refresh();
-                }
-            }, {
-                iconCls: 'panel-tool-close',
-                handler: function () { alert('cl') }
-            }]
+            var ttid = "#" + tid;
+            $('#glftabs').tabs('add', {
+                title:tid,
+                content: '<iframe id=' + tid + ' name =' + tid + ' "  scrolling=auto   frameborder="0" src="' + iframeurl + '" style="width: 100%;height:99%"></iframe>',
+                closable: true,
+                selected: true
             });
-
-
-        $("#" + tid).panel('open').panel('maximize');
-          //  $("#" + tid).panel("maximize", "true");
-            // $('#glftabs').tabs('getTab',tid).panel('options').tab.hide();
+            $('#glftabs').tabs('getTab', tid).panel('options').tab.hide();   
+          // $('#glftabs').tabs('getTab',tid).panel('options').tab.hide();
         }
 
         function seltab(obj) {
@@ -126,68 +133,54 @@
             var parid = $(obj).attr("parid");
             if (parid == 0)
                 if ($(obj).find("span.label").length > 0)
-                    return;
-            $("#glf_tabs").children(".panel").children(".panel-body").panel("close");
+                return;
             var tid = "glftabs_" + menuid;
-            if ($("#" + tid).length<=0) {
-                glf_newtab(menuid, $(obj).attr("frameurl"), $(obj).text());
+            if (!$('#glftabs').tabs('exists',tid)) {
+                glf_newtab(menuid, $(obj).attr("frameurl"));
             }
-            $("#" + tid).panel('open').panel('maximize');
-//            alert($("#glf_tabs").find(".easyui-panel").context);
-//            $("#glf_tabs").find(".easyui-panel").panel('close');
-//            $("#glftabs_"+menuid).panel("open");
+            else
+                $("#glftabs").tabs("select", tid);
             //<a href="#" onclick="seltab(2,1)" class="current">Dashboard x</a>
-            curtab = menuid;
             chgbdcb(obj);
+//            var glftabs = $('#glftabs').tabs('tabs');
+//            for (var i = 0; i < glftabs.length; i++) {
+//                glftabs[i].panel('options').tab.hide();           
+//            }
             
-            //            var glftabs = $('#glftabs').tabs('tabs');
-            //            for (var i = 0; i < glftabs.length; i++) {
-            //                glftabs[i].panel('options').tab.hide();           
-            //            }
-
         }
         function chgbdcb(obj) {
             var menuid = $(obj).attr("menuid");
             var parid = $(obj).attr("parid");
             $("#breadcrumb").children("a").removeClass("current");
             $('#sidebar').find('li.active').removeClass('active');
-            //            if (parid < 0) {
-            //                $("#breadcrumb").children("a[menuid=" + menuid + "]").addClass("current");
-            //            }
+//            if (parid < 0) {
+//                $("#breadcrumb").children("a[menuid=" + menuid + "]").addClass("current");
+//            }
 
             if (parid > 0) {
-
-                var tli = $(obj).parent().parent().parent();
-                tli.addClass('active');
-                tli.removeClass('open');
-                if (tli.width() < 50)
-                    tli.children("ul").css('display', 'none');
+            var li = $('#sidebar').find("a[menuid=" + parid + "]").parent("li");
+                li.removeClass('open').addClass('active');
+                if (li.width() < 50)
+                    li.children("ul").css('display', 'none');
             }
-
+                
             else
                 $('#sidebar').find("a[menuid=" + menuid + "]").parent("li").addClass('active');
-            //            if (parid < 0) return;
-            if ($("#breadcrumb").children("a[menuid=" + menuid + "]").length > 0) {
-                $("#breadcrumb").children("a[menuid=" + menuid + "]").addClass("current");
-            }
-            else {
-                $("#breadcrumb").append('<a href="#" onclick="selmenu(this)" menuid=' + menuid + ' class="current">' + $(obj).text() + '</a>');
-            }
+//            if (parid < 0) return;
+            $("#breadcrumb").children("a[menuid=" + menuid + "]").remove();
+            $("#breadcrumb").append('<a href="#" onclick="selmenu(this)" menuid=' + menuid + ' class="current">' + $(obj).text() + '</a>');
             
-//            $("#breadcrumb").children("a[menuid=" + menuid + "]").remove();
-           
-
-
+    
 
         }
         function selmenu(obj) {
             $("#sidebar").find("a[menuid=" + $(obj).attr("menuid") + "]").click();
         }
         function glf_refresh() {
-            var frm = $("#glftabs_" + curtab).children("iframe");
-            frm.attr("src", frm.attr("src"));
+            var title = $("#glftabs").tabs('getSelected').panel('options').title;
+            $("#" + title).attr("src", $("#" + title).attr("src"));
         }
-        function glf_height() {
+        function glf_height(){
             var tmp = $(window).height();
             if ($(window).width() > 479) {
                 tmp -= 60;
@@ -197,12 +190,11 @@
             }
             tmp -= $("#breadcrumb").height();
             tmp -= $("#footer").height();
-            $("#glf_tabs").css({ height: tmp })
+            $("#glftabs").css({ height: tmp })
         }
         glf_height();
         $(window).resize(glf_height);
         $("#breadcrumb").children("a:first").click();
-        
         
     </script>
 </body>

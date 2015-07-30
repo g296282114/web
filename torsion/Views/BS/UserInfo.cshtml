@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -7,99 +6,124 @@
 <head>
     <title>Unicorn Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css"/>
-	<link rel="stylesheet" type="text/css" href="~/Content/themes/icon.css"/>
-	<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
-	<script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script> 
+    <link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/themes/icon.css" />
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script>
 </head>
 <body>
-<table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width:100%" > 
-            <thead>
+
+<div id="userp" style="width:100%;padding:30px">
+ UserCode<br />
+    <input class="easyui-validatebox textbox" data-options="required:true,validType:'length[3,10]'"/>
+                   
+ 
+                    Name
+                    Pwd
+                   Deptid
+                    Groupid
+                    UserType
+                    CompareType
+</div>
+
+    <table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width: 100%;display:none;">
+        <thead>
             <tr>
-                <th data-options="field:'id',align:'center',width:100" >id</th>
-                <th data-options="field:'UserCode',width:100" >UserCode</th>
-                <th data-options="field:'Name',width:100" >Name</th>
-                <th data-options="field:'Pwd',width:200" >Pwd</th>
-                <th data-options="field:'Deptid',width:200" >Deptid</th>
-                <th data-options="field:'Groupid',width:200" >Groupid</th>
-                <th data-options="field:'UserType',width:200" >UserType</th>
-                <th data-options="field:'CompareType',width:200" >CompareType</th>
+                <th data-options="field:'id',align:'center',width:100">
+                    id
+                </th>
+                <th data-options="field:'UserCode',width:100">
+                    UserCode
+                </th>
+                <th data-options="field:'Name',width:100">
+                    Name
+                </th>
+                <th data-options="field:'Pwd',width:200">
+                    Pwd
+                </th>
+                <th data-options="field:'Deptid',width:200">
+                    Deptid
+                </th>
+                <th data-options="field:'Groupid',width:200">
+                    Groupid
+                </th>
+                <th data-options="field:'UserType',width:200">
+                    UserType
+                </th>
+                <th data-options="field:'CompareType',width:200">
+                    CompareType
+                </th>
             </tr>
         </thead>
- </table>
- <div id="tb" style="padding:2px 5px;">
-        Name: 
-        <input id="name" class="easyui-textbox" style="width:100px">
-        From: <input id="from" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:110px">
-        To: <input id="to" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width:110px">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="progress()">Search</a>
+    </table>
+     
+   
+   
+    <div id="tb" style="padding: 2px 5px;">
+    Search:
+    <input id="search" class="easyui-textbox" data-options="prompt:'id|Name|UserCode'" style="width:150px"/>
+    <select id="deptid" class="easyui-combobox" name="deptid" >
+    <option value="0">ALL DEPT</option>
+        <option value="1">DEP1</option>
+        <option value="2">DEP2</option>
+        <option value="3">DEP3</option>
+        <option value="4">DEP4</option>
+    </select>
+
+    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="progress()">Search</a>
     </div>
-    <div id="ft" style="padding:2px 5px;">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true"></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true"></a>
+    <div id="ft" style="padding: 2px 5px;">
+        <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="useradd()" plain="true"></a><a href="#" class="easyui-linkbutton"
+                iconcls="icon-edit" plain="true"></a><a href="#" class="easyui-linkbutton" iconcls="icon-remove"
+                    plain="true"></a>
     </div>
- <script type="text/javascript">
+    <script type="text/javascript">
+        $("#userp").panel().panel("close");
+       // $("#userp").panel("close");
+        $(function () {
+
+            $('#dg').datagrid({
+                title: 'UserInfo',
+                iconCls: 'icon-edit', //图标 
+                //   width: 700, 
+                height: 'auto',
+                toolbar: '#tb',
+                footer: '#ft',
+                nowrap: false,
+                striped: true,
+                border: true,
+                method: "get",
+                collapsible: true, //是否可折叠的 
+                fit: true, //自动大小 
+                url: '../bs/userinfojson',
+                //sortName: 'code', 
+                //sortOrder: 'desc', 
+                remoteSort: false,
+                idField: 'fldId',
+                singleSelect: true, //是否单选 
+                rownumbers: true//行号 
 
 
-     $(function () {
+            });
 
-         $('#dg').datagrid({
-             title: 'UserInfo',
-             iconCls: 'icon-edit', //图标 
-             //   width: 700, 
-             height: 'auto',
-             toolbar: '#tb',
-             footer: '#ft',
-             nowrap: false,
-             striped: true,
-             border: true,
-             method: "get",
-             collapsible: true, //是否可折叠的 
-             fit: true, //自动大小 
-             url: '../bs/userinfojson',
-             //sortName: 'code', 
-             //sortOrder: 'desc', 
-             remoteSort: false,
-             idField: 'fldId',
-             singleSelect: true, //是否单选 
-             rownumbers: true//行号 
+        });
+        function useradd() {
+            $(".datagrid").css("display", "none");
+            $('#userp').panel("open").panel("maximize");
+           // $('#userp').panel("refresh","../bs");
+        }
+        
+        function progress() {
+            $('#dg').datagrid({
+                url: '../bs/userinfojson',
+                queryParams: {
+                    search: $("#search").textbox('getValue'),
+                    deptid: $("#deptid").datebox('getValue')
 
-
-         });
-
-     });
-
-     function myformatter(date) {
-         var y = date.getFullYear();
-         var m = date.getMonth() + 1;
-         var d = date.getDate();
-         return y + '-' + (m < 10 ? ('0' + m) : m) + '-' + (d < 10 ? ('0' + d) : d);
-     }
-     function myparser(s) {
-         if (!s) return new Date();
-         var ss = (s.split('-'));
-         var y = parseInt(ss[0], 10);
-         var m = parseInt(ss[1], 10);
-         var d = parseInt(ss[2], 10);
-         if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
-             return new Date(y, m - 1, d);
-         } else {
-             return new Date();
-         }
-     }
-
-     function progress() {
-         $('#dg').datagrid({
-             url: '../bs/userinfojson',
-             queryParams: {
-                 name: $("#name").textbox('getValue'),
-                 start: $("#from").datebox('getValue'),
-                 end: $("#to").datebox('getValue')
-             }
-         });
-     }
+                }
+            });
+            
+        }
 
     </script>
 </body>
