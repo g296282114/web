@@ -356,7 +356,7 @@ namespace WindowsForms
             // getname();
             //StackTrace st = new StackTrace(true);
             //textBox2.Text = st.GetFrame(1).GetMethod().Name.ToString(); 
-            torsion.BLL.GlfGloFun.Write_Err("test");
+            torsion.Model.GlfGloFun.Write_Err("test");
         }
 
         public Double ConvertUnit(Double var, string Utype)

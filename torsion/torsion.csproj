@@ -600,6 +600,7 @@
     <Content Include="Err.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Log.txt" />
     <Content Include="Scripts\bshome\bootstrap.min.js" />
     <Content Include="Scripts\bshome\unicorn.js" />
     <Content Include="Scripts\easyloader.js" />

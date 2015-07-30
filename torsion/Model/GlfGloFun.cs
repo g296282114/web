@@ -106,44 +106,66 @@ namespace torsion.Model
 
             return 1;
         }
+        static string lsterr = "";
+        static Object errLock = new Object();
+
         public static void Write_Err(string err, int errcode = 0)
         {
-
+          
             // System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
 
             //  System.IO.File.WriteAllText(@"Err.txt",str);
-            
-            StreamWriter sw = null;
-            try
+            lock (errLock)
             {
+                if (err == lsterr) return;
                 StackTrace st = new StackTrace(true);
-                sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Err.txt", true, System.Text.Encoding.UTF8);
-                sw.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "      " + st.GetFrame(1).GetMethod().Name.PadRight(30) + errcode.ToString().PadRight(10) + err + System.Environment.NewLine);
-                sw.Flush();
-            }
-            finally
-            {
-                sw.Close();
+                StreamWriter sw = null;
+                try
+                {
+                    lsterr = errcode.ToString().PadRight(5);
+                    lsterr += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    string tstr = "";
+                    for (int i = 1; i < st.FrameCount && i < 5; i++)
+                    {
+                        tstr += st.GetFrame(i).GetMethod().Name+"->";
+
+                    }
+                    lsterr += tstr.PadRight(40);
+                    lsterr += err;
+                    sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Err.txt", true, System.Text.Encoding.UTF8);
+                    sw.WriteLine(err);
+                    lsterr = err;
+                }
+                finally
+                {
+                }
+
             }
 
         }
+
+        static Object logLock = new Object();
         public static void Write_Log(string err, int errcode = 0)
         {
 
             // System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
 
             //  System.IO.File.WriteAllText(@"Err.txt",str);
-            StreamWriter sw = null;
-            try
+            lock (logLock)
             {
-                sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Log.txt", true, System.Text.Encoding.UTF8);
-                sw.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "      " + err + System.Environment.NewLine);
-                sw.Flush();
+                StreamWriter sw = null;
+                try
+                { 
+                    sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Log.txt", true, System.Text.Encoding.UTF8);
+                    sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "      " + err);
+
+                }
+                finally
+                {
+                }
+
             }
-            finally
-            {
-                sw.Close();
-            }
+
 
         }
     }

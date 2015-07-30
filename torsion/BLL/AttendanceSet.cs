@@ -80,7 +80,7 @@ namespace torsion.BLL
                  for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                  {
                      torsion.Model.AttendanceSet.ResultUnit asru = new Model.AttendanceSet.ResultUnit();
-                     get_DataRow(ds.Tables[0],i,asru);
+                     torsion.Model.GlfGloFun.get_DataRow(ds.Tables[0], i, asru);
                      gl_ResultUnit.Add(asru);
 
                  }
@@ -163,61 +163,61 @@ namespace torsion.BLL
          }
 
 
-         public int get_DataRow(DataTable dt,int rn, object drai)
-         {
-             try
-             {
-                 Type tdrai = drai.GetType();
-                 PropertyInfo[] ci = tdrai.GetProperties();
+         //public int get_DataRow(DataTable dt,int rn, object drai)
+         //{
+         //    try
+         //    {
+         //        Type tdrai = drai.GetType();
+         //        PropertyInfo[] ci = tdrai.GetProperties();
                  
                  
-                 foreach (PropertyInfo c in ci)
-                 {
-                     if (dt.Columns.Contains(c.Name))
-                     {
+         //        foreach (PropertyInfo c in ci)
+         //        {
+         //            if (dt.Columns.Contains(c.Name))
+         //            {
                        
-                         if (c.PropertyType == typeof(string))
-                             c.SetValue(drai, dt.Rows[rn][c.Name].ToString(), null);
-                         else
-                             c.SetValue(drai, dt.Rows[rn][c.Name], null);  
-                     }
+         //                if (c.PropertyType == typeof(string))
+         //                    c.SetValue(drai, dt.Rows[rn][c.Name].ToString(), null);
+         //                else
+         //                    c.SetValue(drai, dt.Rows[rn][c.Name], null);  
+         //            }
                      
-                 }
+         //        }
 
-             }
-             catch (Exception e)
-             {
-                 GlfGloFun.Write_Err( e.Message);
-                 return 0;
-             }
-             return 1;
-         }
-         public int add_DataRow(DataSet ds,object drai)
-         {
-             try
-             {
-                 Type tdrai = drai.GetType();
-                 DataRow dr = ds.Tables[tdrai.Name].NewRow();
-                 PropertyInfo[] ci = tdrai.GetProperties();
-                 foreach (PropertyInfo c in ci)
-                 {
+         //    }
+         //    catch (Exception e)
+         //    {
+         //        GlfGloFun.Write_Err(e.Message);
+         //        return 0;
+         //    }
+         //    return 1;
+         //}
+         //public int add_DataRow(DataSet ds,object drai)
+         //{
+         //    try
+         //    {
+         //        Type tdrai = drai.GetType();
+         //        DataRow dr = ds.Tables[tdrai.Name].NewRow();
+         //        PropertyInfo[] ci = tdrai.GetProperties();
+         //        foreach (PropertyInfo c in ci)
+         //        {
 
-                     dr[c.Name] = c.GetValue(drai, null);
+         //            dr[c.Name] = c.GetValue(drai, null);
                     
-                 }
-                 ds.Tables[tdrai.Name].Rows.Add(dr);
+         //        }
+         //        ds.Tables[tdrai.Name].Rows.Add(dr);
 
-             }
-             catch (Exception e)
-             {
+         //    }
+         //    catch (Exception e)
+         //    {
                  
-                 GlfGloFun.Write_Err(e.Message);
-                 return 0;
-             }
+         //        GlfGloFun.Write_Err(e.Message);
+         //        return 0;
+         //    }
                  
              
-             return 1;
-         }
+         //    return 1;
+         //}
          public int get_StaffClassDay(torsion.Model.AttendanceSet.DatasetStat.DRResultInfo drri, DateTime day, DataSet ds, int dsi, torsion.Model.AttendanceSet.StaffClasses assc, torsion.Model.AttendanceSet.ClassesInfo asci, DataSet tjds)
          {
              int sid = drri.Userid;
@@ -248,14 +248,14 @@ namespace torsion.BLL
                      //drai.OpenDoor = Convert.ToInt32(ds.Tables[0].Rows[dsi]["OpenDoor"].ToString());
                      //drai.Sensorid = Convert.ToInt32(ds.Tables[0].Rows[dsi]["Sensorid"].ToString());
                      //drai.CheckTime = Convert.ToDateTime(ds.Tables[0].Rows[dsi]["CheckTime"].ToString());
-                     get_DataRow(ds.Tables[0],dsi, drai);
+                     torsion.Model.GlfGloFun.get_DataRow(ds.Tables[0],dsi, drai);
  
                      if (!sdt.HasValue)
                      {                       
                          sdt = dt;
                          edt = dt;
                          drai.Suggest = 1;
-                         add_DataRow(tjds, drai);
+                         torsion.Model.GlfGloFun.add_DataRow(tjds, drai);
                      }
 
                      if (dt > edt)
@@ -274,7 +274,7 @@ namespace torsion.BLL
              if (edt > sdt)
              {
                  drai.Suggest = 2;
-                 add_DataRow(tjds,drai);
+                 torsion.Model.GlfGloFun.add_DataRow(tjds, drai);
              }
 
 
@@ -334,7 +334,7 @@ namespace torsion.BLL
                  drci.Absent = ConvertUnit(ts.TotalHours, "Absent");         
              }
 
-             add_DataRow(tjds, drci);
+             torsion.Model.GlfGloFun.add_DataRow(tjds, drci);
              drri.ShouldWork += ConvertUnit(gl_DayHour, "ShouldWork");
 
              drri.Work += drci.Work;
@@ -434,7 +434,7 @@ namespace torsion.BLL
                          i++;
                      }
                  }
-                 add_DataRow(tjds,drri);
+                 torsion.Model.GlfGloFun.add_DataRow(tjds, drri);
              }
 
              return 1;

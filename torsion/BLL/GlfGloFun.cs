@@ -40,25 +40,41 @@ namespace torsion.BLL
             }
             return 1;
         }
-        
+
+        public static string lsterr = "";
+        static Object thisLock = new Object();
+
         public static void Write_Err(string err,int errcode = 0)
         {
+            lock (thisLock)
+            {
+                if (err == lsterr) return;
+                StackTrace st = new StackTrace(true);
+                StreamWriter sw = null;
+                try
+                {
+                    lsterr = errcode.ToString().PadRight(5);
+                    lsterr += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    string tstr = "";
+                    for (int i = 1; i < st.FrameCount && i < 5; i++)
+                    {
+                        tstr += st.GetFrame(i).GetMethod().Name;
 
+                    }
+                    lsterr += tstr.PadRight(40);
+                    lsterr += err;
+                    sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Err.txt", true, System.Text.Encoding.UTF8);
+                    sw.WriteLine(err);
+                    lsterr = err;
+                }
+                finally
+                {
+                }
+            }
             // System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
 
             //  System.IO.File.WriteAllText(@"Err.txt",str);
-            StackTrace st = new StackTrace(true);
-            StreamWriter sw = null;
-            try
-            {
-                sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "Err.log", true, System.Text.Encoding.UTF8);
-                sw.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "      " + st.GetFrame(1).GetMethod().Name.PadRight(30) + errcode.ToString().PadRight(10) + err + System.Environment.NewLine);
-                sw.Flush();
-            }
-            finally
-            {
-                sw.Close();
-            }
+           
 
         }
     }

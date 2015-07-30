@@ -7,21 +7,93 @@
 <head>
     <title>Unicorn Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css" />
+@*    <link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/themes/icon.css" />
     <link rel="stylesheet" href="~/Content/themes/bshome/bootstrap.css" />
     <link rel="stylesheet" href="~/Content/themes/bshome/bootstrap-responsive.css" />
     <link rel="stylesheet" href="~/Content/themes/bshome/unicorn_main.css" />
-    <link rel="stylesheet" href="~/Content/themes/bshome/unicorn_grey.css" class="skin-color" />
+    <link rel="stylesheet" href="~/Content/themes/bshome/unicorn_grey.css" class="skin-color" />*@
     <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/bshome/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/bshome/unicorn.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script>
+   <style type="text/css">
+body{margin:0px;padding:0px;}
+.glf_mvBox{height:15px; background:#F5FAFD url("/Content/themes/img/loading_1_2.png") no-repeat left center; width:471px; position:relative; padding:0 30px; margin:0 auto;}
+.glf_mvBtn{position:absolute; left:50px; top:0;}
+.glf_mvTxt{height:50px; line-height:50px; width:531px; text-align:center; font-size:30px; color:#29B6FF; font-family:Arial; margin:0 auto;}
+#glf_loading  
+{
+    background:#F5FAFD;
+position:absolute;  
+text-align:center;  
+ z-index:9999;
+
+}  
+</style>
+
+
 </head>
 <body>
-@{
-    
-}
+<div id="glf_loading" style="width:100%;height:100%;padding-top:100px">
+<div class="glf_mvTxt">Loading...</div>
+<div class="glf_mvBox">
+ <img class="glf_mvBtn" src="~/Content/themes/img/loading_1_1.png" alt="loading" style="left: 143px;"/>
+</div>
+</div>
+<script type="text/javascript">
+//450
+    var delVal = 30;
+    var atVal = 50;
+    var timeload;
+    function autoMove() {
+        if (delVal >= atVal) return;
+        delVal++;
+        if (delVal > atVal) {
+            delVal = atVal;
+        }
+        $(".glf_mvBtn").css("left", delVal);
+        $(".glf_mvTxt").text("Loading(" + parseInt(delVal / 4.5) + "%)...");
+        if (atVal >= 450) {
+            clearInterval(timeload);
+            $("#glf_loading").remove();
+        }
+        
+    }
+    timeload = setInterval(autoMove, 16);
+//    var deNum = 0;
+//    function autoTsq() {
+//        $(".mvSq").css("color", "#F5FAFD");
+//        setTimeout(function () { $(".mvSq").eq(0).css("color", "#29B6FF") }, 0);
+//        setTimeout(function () { $(".mvSq").eq(1).css("color", "#29B6FF") }, 500);
+//        setTimeout(function () { $(".mvSq").eq(2).css("color", "#29B6FF") }, 1000);
+//    }
+    //    setInterval(autoTsq, 1500);
+    var csshref = ["/Content/themes/metro/easyui.css","/Content/themes/icon.css","/Content/themes/bshome/bootstrap.css",
+    "/Content/themes/bshome/bootstrap-responsive.css", "/Content/themes/bshome/unicorn_main.css", "/Content/themes/bshome/unicorn_grey.css"];
+    for(var i = 0;i<csshref.length;i++) {
+        $("head").append("<link>");
+        css = $("head").children(":last");
+        css.attr({
+            rel: "stylesheet",
+            type: "text/css",
+            href: csshref[i]
+        });
+        atVal += 20;
+    }
+
+</script>
+
+    <script type="text/javascript" src="~/Scripts/bshome/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        atVal += 40;
+</script>
+    <script type="text/javascript" src="~/Scripts/bshome/unicorn.js"></script>
+    <script type="text/javascript">
+        atVal += 20;
+</script>
+    <script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script>
+    <script type="text/javascript">
+        atVal += 40;
+</script>
+
     <div id="header">
         <h1 onclick=""></h1>
     </div>
@@ -101,6 +173,7 @@
     <ul class="typeahead dropdown-menu">
     </ul>
     <script type="text/javascript">
+        atVal += 40;
         $('#glftabs').tabs({
             plain: true,
             narrow: true,
@@ -204,8 +277,10 @@
             $("#glftabs").css({ height: tmp })
         }
         glf_height();
+        atVal += 80;
         $(window).resize(glf_height);
         $("#breadcrumb").children("a:first").click();
+        atVal = 450;
         
     </script>
 </body>
