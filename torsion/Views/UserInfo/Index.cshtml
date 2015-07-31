@@ -1,0 +1,274 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unicorn Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="~/Content/themes/metro/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/themes/icon.css" />
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script>
+</head>
+<body>
+    <table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width: 100%;
+        display: none;">
+        <thead>
+            <tr>
+                <th data-options="field:'id',align:'center',width:100">
+                    id
+                </th>
+                <th data-options="field:'UserCode',width:100">
+                    UserCode
+                </th>
+                <th data-options="field:'Name',width:100">
+                    Name
+                </th>
+                <th data-options="field:'Pwd',width:200">
+                    Pwd
+                </th>
+                <th data-options="field:'Deptid',width:200">
+                    Deptid
+                </th>
+                <th data-options="field:'Groupid',width:200">
+                    Groupid
+                </th>
+                <th data-options="field:'UserType',width:200">
+                    UserType
+                </th>
+                <th data-options="field:'CompareType',width:200">
+                    CompareType
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div id="tb" style="padding: 2px 5px;">
+        Search:
+        <input id="search" class="easyui-textbox" data-options="prompt:'id|Name|UserCode'"
+            style="width: 150px" />
+        <select id="deptid" class="easyui-combobox" name="deptid">
+            <option value="0">ALL DEPT</option>
+            <option value="1">DEP1</option>
+            <option value="2">DEP2</option>
+            <option value="3">DEP3</option>
+            <option value="4">DEP4</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="progress()">Search</a>
+    </div>
+    <div id="ft" style="padding: 2px 5px;">
+        <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="userchange(1)"
+            plain="true"></a><a href="#" class="easyui-linkbutton" iconcls="icon-edit" onclick="userchange(2)"
+                plain="true"></a><a href="#" class="easyui-linkbutton" iconcls="icon-remove" onclick="userchange(3)" plain="true">
+                </a>
+    </div>
+    <div id="userp" style="width: 100%;">
+        <div class="easyui-tabs" style="width: 100%;">
+            <div title="BaseInfo" style="padding: 30px;">
+                <form id="BaseInfo" action="#" class="easyui-form" method="post" data-options="novalidate:true">
+                
+                <input id="Userid"   type="hidden" name="id" style="width: 200px; height: 30px"/>
+                
+                <table style="margin: 0 auto; font-size: 14px;" cellpadding="10">
+                
+                    <tr>
+                        <td>
+                            UserCode:
+                        </td>
+                        <td>
+                            <input class="easyui-textbox" type="text" name="UserCode" data-options="required:true"
+                                style="width: 200px; height: 30px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Name:
+                        </td>
+                        <td>
+                            <input class="easyui-textbox" type="text" name="Name" data-options="required:true"
+                                style="width: 200px; height: 30px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Pwd:
+                        </td>
+                        <td>
+                            <input class="easyui-textbox" type="text" name="Pwd" data-options="required:true"
+                                style="width: 200px; height: 30px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Deptid:
+                        </td>
+                        <td>
+                            <input class="easyui-textbox" type="text" name="Deptid" data-options="required:true"
+                                style="width: 200px; height: 30px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Groupid:
+                        </td>
+                        <td>
+                            <input class="easyui-textbox" type="text" name="Groupid" data-options="required:true"
+                                style="width: 200px; height: 30px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            UserType:
+                        </td>
+                        <td>
+                            <input class="easyui-textbox" type="text" name="UserType" data-options="required:true"
+                                style="width: 200px; height: 30px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            CompareType:
+                        </td>
+                        <td>
+                            <input class="easyui-textbox" type="text" name="CompareType" data-options="required:true"
+                                style="width: 200px; height: 30px"/>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align: center; padding-top: 20px">
+                    <a id="submitUser" href="javascript:void(0)" class="easyui-linkbutton" onclick="submitUser()"
+                        style="width: 100px">Save</a> <a href="javascript:void(0)" class="easyui-linkbutton"
+                            onclick="clearForm()" style="width: 100px">Clear</a> <a href="javascript:void(0)"
+                                class="easyui-linkbutton" onclick="showuser()" style="width: 100px">Close</a>
+                </div>
+                </form>
+            </div>
+            <div title="ExtendInfo" style="padding: 30px;">
+                
+            </div>
+            <div title="FaceImageInfo" style="padding: 30px;">
+            </div>
+            <div title="FingerPrintInfo" style="padding: 30px;">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var subtype = 0;
+        var dbselected;
+        $("#userp").panel().panel("close");
+        // $("#userp").panel("close");
+        $(function () {
+
+            $('#dg').datagrid({
+                title: 'UserInfo',
+                iconCls: 'icon-edit', //图标 
+                //   width: 700, 
+                height: 'auto',
+                toolbar: '#tb',
+                footer: '#ft',
+                nowrap: false,
+                striped: true,
+                border: true,
+                method: "get",
+                collapsible: true, //是否可折叠的 
+                fit: true, //自动大小 
+                //sortName: 'code', 
+                //sortOrder: 'desc', 
+                remoteSort: false,
+                idField: 'fldId',
+                singleSelect: true, //是否单选 
+                rownumbers: true//行号 
+
+
+            });
+
+        });
+        $(function () {
+            $('#BaseInfo').form({
+                success: function (data) {
+                    $.messager.alert('Info', data, 'info');
+                }
+            });
+        });
+        function submitUser() {
+            var frmurl = "#"
+            switch (subtype) {
+                case 1:
+                    
+                    frmurl = "../UserInfo/AddBaseInfo";
+                    break;
+                case 2:
+                    frmurl = "../UserInfo/ModifyBaseInfo";
+                    break;
+                case 3:
+                    frmurl = "../UserInfo/DelBaseInfo";
+                    break;
+            }
+            $('#BaseInfo').form('submit', {
+                url: frmurl,
+                onSubmit: function () {
+                    return $(this).form('enableValidation').form('validate');
+                }
+            });
+            //  $('#AddUser').form('submit');
+        }
+
+        function clearForm() {
+            $('#BaseInfo').form('clear');
+        }
+        function userchange(ttype) {
+            if (ttype != 1) {
+                dbselected = $('#dg').datagrid('getSelected');
+                if (!dbselected) {
+                    $.messager.alert("Anviz", "Please select staff");
+                    return;
+                }
+            }
+            subtype = ttype;
+            if (ttype == 3) {
+                $.messager.confirm('Anviz', 'Are you delete this?', function (r) {
+                    if (r) {
+                        $('#BaseInfo').form('load', dbselected);
+                        submitUser();
+                        
+                    }
+                    return;
+                    
+                });
+                return;
+            }
+
+            $(".datagrid").css("display", "none");
+            $('#userp').panel("open").panel("maximize");
+            
+            if (subtype == 1) {
+                $("#submitUser").linkbutton({ text: "Add" });
+                clearForm();
+            }
+            else {
+                $("#submitUser").linkbutton({ text: "Modify" });
+
+                $('#BaseInfo').form('load', dbselected);
+
+            }
+
+        }
+        function showuser() {
+            $(".datagrid").css("display", "block");
+            $('#userp').panel("close");
+        }
+        function progress() {
+            $('#dg').datagrid({
+                url: '../UserInfo/userinfojson',
+                queryParams: {
+                    search: $("#search").textbox('getValue'),
+                    deptid: $("#deptid").datebox('getValue')
+
+                }
+            });
+
+        }
+
+    </script>
+</body>
+</html>

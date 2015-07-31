@@ -12,21 +12,39 @@
     <script type="text/javascript" src="~/Scripts/jquery.easyui.min.js"></script>
 </head>
 <body>
-
-<div id="userp" style="width:100%;padding:30px">
- UserCode<br />
-    <input class="easyui-validatebox textbox" data-options="required:true,validType:'length[3,10]'"/>
-                   
- 
-                    Name
-                    Pwd
-                   Deptid
-                    Groupid
-                    UserType
-                    CompareType
-</div>
-
-    <table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width: 100%;display:none;">
+    <div id="userp" style="width: 100%;">
+        <div class="easyui-tabs" style="width: 100%;">
+            <div title="BaseInfo" style="padding: 30px">
+                <form id="AddUser" action="form1_proc.php"  class="easyui-form" method="post" data-options="novalidate:true">
+                <div style="margin-bottom: 10px">
+                    <div style="margin-bottom: 3px">
+                        UserCode</div>
+                    <input class="easyui-validatebox textbox" data-options="required:true,validType:'length[3,10]'"
+                        style="width: 200px; height: 25px" />
+                </div>
+                Name Pwd Deptid Groupid UserType CompareType
+                </form>
+                <div style="text-align: center; padding: 5px">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
+                </div>
+                <script type="text/javascript">
+                    function submitForm() {
+                        $('#ff').form('submit', {
+                            onSubmit: function () {
+                                return $(this).form('enableValidation').form('validate');
+                            }
+                        });
+                    }
+                    function clearForm() {
+                        $('#ff').form('clear');
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    <table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width: 100%;
+        display: none;">
         <thead>
             <tr>
                 <th data-options="field:'id',align:'center',width:100">
@@ -56,30 +74,27 @@
             </tr>
         </thead>
     </table>
-     
-   
-   
     <div id="tb" style="padding: 2px 5px;">
-    Search:
-    <input id="search" class="easyui-textbox" data-options="prompt:'id|Name|UserCode'" style="width:150px"/>
-    <select id="deptid" class="easyui-combobox" name="deptid" >
-    <option value="0">ALL DEPT</option>
-        <option value="1">DEP1</option>
-        <option value="2">DEP2</option>
-        <option value="3">DEP3</option>
-        <option value="4">DEP4</option>
-    </select>
-
-    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="progress()">Search</a>
+        Search:
+        <input id="search" class="easyui-textbox" data-options="prompt:'id|Name|UserCode'"
+            style="width: 150px" />
+        <select id="deptid" class="easyui-combobox" name="deptid">
+            <option value="0">ALL DEPT</option>
+            <option value="1">DEP1</option>
+            <option value="2">DEP2</option>
+            <option value="3">DEP3</option>
+            <option value="4">DEP4</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="progress()">Search</a>
     </div>
     <div id="ft" style="padding: 2px 5px;">
-        <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="useradd()" plain="true"></a><a href="#" class="easyui-linkbutton"
-                iconcls="icon-edit" plain="true"></a><a href="#" class="easyui-linkbutton" iconcls="icon-remove"
-                    plain="true"></a>
+        <a href="#" class="easyui-linkbutton" iconcls="icon-add" onclick="useradd()" plain="true">
+        </a><a href="#" class="easyui-linkbutton" iconcls="icon-edit" plain="true"></a><a
+            href="#" class="easyui-linkbutton" iconcls="icon-remove" plain="true"></a>
     </div>
     <script type="text/javascript">
         $("#userp").panel().panel("close");
-       // $("#userp").panel("close");
+        // $("#userp").panel("close");
         $(function () {
 
             $('#dg').datagrid({
@@ -110,9 +125,9 @@
         function useradd() {
             $(".datagrid").css("display", "none");
             $('#userp').panel("open").panel("maximize");
-           // $('#userp').panel("refresh","../bs");
+            // $('#userp').panel("refresh","../bs");
         }
-        
+
         function progress() {
             $('#dg').datagrid({
                 url: '../bs/userinfojson',
@@ -122,7 +137,7 @@
 
                 }
             });
-            
+
         }
 
     </script>

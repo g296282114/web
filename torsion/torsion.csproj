@@ -171,6 +171,8 @@
     <Compile Include="Controllers\GlfController.cs" />
     <Compile Include="Controllers\GlobalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="Domain\Repository\BaseRepository.cs" />
     <Compile Include="Domain\Repository\ExtraUserInfoRepository.cs" />
@@ -846,6 +848,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\BS\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UserInfo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Setting\ExtendField.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -90,7 +90,6 @@
     </ul>
     <script type="text/javascript">
 
-        var curtab = 0;
         function glf_test() {
             
             $("#glftabs_1").panel("close");
@@ -111,7 +110,7 @@
                 }
             }, {
                 iconCls: 'panel-tool-close',
-                handler: function () { alert('cl') }
+                handler: function () { glf_close(); }
             }]
             });
 
@@ -137,7 +136,6 @@
 //            $("#glf_tabs").find(".easyui-panel").panel('close');
 //            $("#glftabs_"+menuid).panel("open");
             //<a href="#" onclick="seltab(2,1)" class="current">Dashboard x</a>
-            curtab = menuid;
             chgbdcb(obj);
             
             //            var glftabs = $('#glftabs').tabs('tabs');
@@ -162,6 +160,10 @@
                 tli.removeClass('open');
                 if (tli.width() < 50)
                     tli.children("ul").css('display', 'none');
+                if ($(window).width() < 479) {
+                    tli.parent("ul").css('display', 'none');
+                    tli.parent("ul").parent("div").removeClass("open");
+                }
             }
 
             else
@@ -184,8 +186,23 @@
             $("#sidebar").find("a[menuid=" + $(obj).attr("menuid") + "]").click();
         }
         function glf_refresh() {
-            var frm = $("#glftabs_" + curtab).children("iframe");
+            var frm = $("#glftabs_" + $("#breadcrumb").children("a.current").attr("menuid")).children("iframe");
+           // frm = $("#breadcrumb").children("a.current").attr("menuid");
             frm.attr("src", frm.attr("src"));
+        }
+        function glf_close() {
+        var menuid = $("#breadcrumb").children("a.current").attr("menuid");
+        if (menuid == 1) {
+
+            $.messager.alert("Anviz", "HomePage cannot close");
+            return;
+        }
+            $("#glftabs_" +menuid).panel("destroy");
+            $("#breadcrumb").children("a.current").remove();
+            $("#breadcrumb").children("a:last").click();
+//            var frm = $("#glftabs_" + $("#breadcrumb").children("a.current").attr("menuid")).children("iframe");
+//            // frm = $("#breadcrumb").children("a.current").attr("menuid");
+//            frm.attr("src", frm.attr("src"));
         }
         function glf_height() {
             var tmp = $(window).height();
@@ -201,8 +218,9 @@
         }
         glf_height();
         $(window).resize(glf_height);
-        $("#breadcrumb").children("a:first").click();
-        
+        setTimeout(function () {
+            $("#breadcrumb").children("a:first").click();
+        }, 50);
         
     </script>
 </body>

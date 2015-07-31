@@ -17,8 +17,12 @@ namespace torsion.Controllers
         {
       //  http://xue.youdao.com/w?method=tinyEngData&date=2015-07-26
             string ret = string.Empty;
-
-           ret =  GlobalController.Get_Get_String("http://xue.youdao.com/w?method=tinyEngData&date=2015-07-26");
+            for (int i = 0; i < 10; i++)
+            {
+                ret = GlobalController.Get_Get_String("http://xue.youdao.com/w?method=tinyEngData&date="+DateTime.Now.AddDays(i).ToString("yyyy-MM-dd"));
+                if (ret.Length > 40) break;
+            }
+           
             return Content(ret);
         }
         public ActionResult BIndex()
@@ -137,32 +141,7 @@ namespace torsion.Controllers
         {
             return Content("test");
         }
-
-        public ActionResult UserInfo()
-        {
-            return View();
-        }
-
-        public string UserInfoJson()
-        {
-            BLL.UserInfo webll = new BLL.UserInfo();
-            string search="";
-            int deptid=0;
-            if (Request.QueryString["search"] != null)
-                search = Request.QueryString["search"];
-            if (Request.QueryString["deptid"] != null)
-                deptid = int.Parse(Request.QueryString["deptid"]);
-
-            DataSet ds = webll.get_UserInfo(search,deptid);
-            torsion.Model.UserInfo.BaseInfo[] uibi = new Model.UserInfo.BaseInfo[ds.Tables[0].Rows.Count];
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                uibi[i] = new Model.UserInfo.BaseInfo();
-                torsion.Model.GlfGloFun.get_DataRow(ds.Tables[0], i, uibi[i]);
-            }
-            return Newtonsoft.Json.JsonConvert.SerializeObject(uibi);  
-        }
-
+ 
         public ActionResult Attendance()
         {
            
